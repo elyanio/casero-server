@@ -1,0 +1,32 @@
+package caribehostal.appcasero.comunication
+
+import android.annotation.TargetApi
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
+
+/**
+ * Created by asio on 8/17/2017.
+ */
+class SmsReceiver : BroadcastReceiver() {
+    private val ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED"
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    override fun onReceive(context: Context?, intent: Intent?) {
+
+        val action = intent!!.action
+        if (action == ACTION_SMS_RECEIVED) {
+            val msgs = getMessagesFromIntent(intent)
+            var numberSender: String
+            var messageBody: String = ""
+            if (msgs != null) {
+                for (msg in msgs) {
+                    numberSender = msg.originatingAddress
+                    messageBody += msg.messageBody
+                }
+            }
+        }
+    }
+}

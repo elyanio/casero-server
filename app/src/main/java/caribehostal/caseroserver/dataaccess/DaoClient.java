@@ -9,9 +9,13 @@ import io.requery.sql.EntityDataStore;
  */
 
 public class DaoClient {
+    private EntityDataStore<Persistable> dataStore;
 
-    public void insertClient(Client client) {
-        EntityDataStore<Persistable> dataStore = DataStoreHolder.INSTANCE.getDataStore();
-        dataStore.insert(client);
+    public DaoClient() {
+        dataStore = DataStoreHolder.INSTANCE.getDataStore();
+    }
+
+    public void upsertClient(Client client) {
+        dataStore.upsert(client);
     }
 }

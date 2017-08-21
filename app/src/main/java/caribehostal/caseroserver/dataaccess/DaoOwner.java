@@ -11,8 +11,13 @@ import io.requery.sql.EntityDataStore;
 
 public class DaoOwner {
 
-    public void insertOwner(Owner owner) {
-        EntityDataStore<Persistable> dataStore = DataStoreHolder.INSTANCE.getDataStore();
-        dataStore.insert(owner);
+    private EntityDataStore<Persistable> dataStore;
+
+    public DaoOwner() {
+        dataStore = DataStoreHolder.INSTANCE.getDataStore();
+    }
+
+    public void upsertOwner(Owner owner) {
+        dataStore.upsert(owner);
     }
 }

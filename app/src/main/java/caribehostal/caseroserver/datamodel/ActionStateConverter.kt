@@ -1,6 +1,5 @@
 package caribehostal.caseroserver.datamodel
 
-import caribehostal.appcasero.datamodel.ActionType
 import io.requery.converter.EnumOrdinalConverter
 
 /**

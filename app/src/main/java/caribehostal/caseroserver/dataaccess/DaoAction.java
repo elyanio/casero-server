@@ -9,9 +9,17 @@ import io.requery.sql.EntityDataStore;
  */
 
 public class DaoAction {
+    private EntityDataStore<Persistable> dataStore;
 
-    public void insertAction(Action action) {
-        EntityDataStore<Persistable> dataStore = DataStoreHolder.INSTANCE.getDataStore();
-        dataStore.insert(action);
+    public DaoAction() {
+        dataStore = DataStoreHolder.INSTANCE.getDataStore();
     }
+
+    public void upsertAction(Action action) {
+        dataStore.upsert(action);
+    }
+
+//    public boolean existAction(Action action){
+//
+//    }
 }

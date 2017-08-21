@@ -9,8 +9,6 @@ import io.requery.Convert;
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
-import io.requery.converter.*;
-import io.requery.converter.LocalDateConverter;
 
 /**
  * Created by Fernando on 16/08/2017.
@@ -50,5 +48,5 @@ public interface IAction {
 
     @Column(nullable = false)
     @Convert(ActionStateConverter.class)
-    ActionType getActionState();
+    ActionState getActionState();
 }

@@ -25,17 +25,22 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
-    testCompile 'junit:junit:4.12'
-
     compile 'io.requery:requery:1.0.2'
     compile 'io.requery:requery-kotlin:1.0.2'
     compile 'io.requery:requery-android:1.0.2'
     compile 'net.zetetic:android-database-sqlcipher:3.5.4'
+    compile 'com.android.support:design:25.2.0'
+    testCompile 'junit:junit:4.12'
+
     annotationProcessor 'io.requery:requery-processor:1.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
 repositories {
     mavenCentral()

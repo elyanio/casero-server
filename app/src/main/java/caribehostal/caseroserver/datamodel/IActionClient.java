@@ -4,34 +4,27 @@ import io.requery.Column;
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
+import io.requery.ManyToOne;
 import io.requery.Persistable;
 
 import static io.requery.PropertyNameStyle.FLUENT_BEAN;
 
 /**
- * Created by Fernando on 16/08/2017.
+ * Created by Fernando on 22/08/2017.
  */
+
 @Entity(propertyNameStyle = FLUENT_BEAN)
-public interface IOwner extends Persistable {
+public interface IActionClient extends Persistable{
     @Key
+    @Generated
     @Column(nullable = false)
-    String getCarnetId();
+    int getId();
 
     @Column(nullable = false)
-    String getFullName();
+    @ManyToOne
+    Client getClient();
 
     @Column(nullable = false)
-    String getUser();
-
-    @Column(nullable = false)
-    String getPassword();
-
-    @Column(nullable = false)
-    String getCell();
-
-    @Column(nullable = false)
-    String getAddress();
-
-    @Column(nullable = true)
-    String getAddressDescription();
+    @ManyToOne
+    Action getAction();
 }

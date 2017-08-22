@@ -1,21 +1,22 @@
 package caribehostal.caseroserver.dataaccess;
 
-import caribehostal.caseroserver.datamodel.Client;
+import caribehostal.caseroserver.datamodel.ActionClient;
 import io.requery.Persistable;
 import io.requery.sql.EntityDataStore;
 
 /**
- * Created by asio on 8/17/2017.
+ * Created by Fernando on 22/08/2017.
  */
 
-public class DaoClient {
+public class DaoActionClient {
+
     private EntityDataStore<Persistable> dataStore;
 
-    public DaoClient() {
+    public DaoActionClient() {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();
     }
 
-    public void upsertClient(Client client) {
-       dataStore.upsert(client);
+    public void upsertAction(ActionClient actionClient) {
+        dataStore.upsert(actionClient);
     }
 }

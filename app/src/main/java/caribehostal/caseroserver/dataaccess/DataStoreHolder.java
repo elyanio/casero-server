@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.dataaccess;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.File;
 
@@ -17,12 +18,12 @@ import static android.os.Environment.getExternalStorageDirectory;
  * Created by asio on 8/17/2017.
  */
 
-enum DataStoreHolder {
+public enum DataStoreHolder {
     INSTANCE;
 
     private EntityDataStore<Persistable> entityDataStore;
     private File directory = new File(getExternalStorageDirectory().getAbsolutePath() + "/Casero");
-    private File dbFile = new File(directory.getAbsolutePath() + "/casero.db");
+    private File dbFile = new File(directory.getAbsolutePath() + "/caseroServer.db");
     private int DB_VERSION = 1;
 
     public EntityDataStore<Persistable> getEntityDataStore() {
@@ -31,7 +32,7 @@ enum DataStoreHolder {
 
     public EntityDataStore<Persistable> getDataStore() {
         if (entityDataStore == null) {
-            entityDataStore = createDataStore(CaseroServerApplication.Companion.instance(), dbFile);
+            entityDataStore = createDataStore(CaseroServerApplication.instance(), dbFile);
         }
         return entityDataStore;
     }
@@ -47,5 +48,9 @@ enum DataStoreHolder {
     public Boolean existDbFile() {
         if (dbFile.exists()) return true;
         return false;
+    }
+
+    public File getDbFile() {
+        return dbFile;
     }
 }

@@ -9,12 +9,18 @@ import io.requery.Convert;
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
+import io.requery.ManyToOne;
+import io.requery.OneToMany;
+import io.requery.Persistable;
+import io.requery.query.Result;
+
+import static io.requery.PropertyNameStyle.FLUENT_BEAN;
 
 /**
  * Created by Fernando on 16/08/2017.
  */
-@Entity
-public interface IAction {
+@Entity(propertyNameStyle = FLUENT_BEAN)
+public interface IAction extends Persistable {
 
     @Key
     @Generated
@@ -25,10 +31,8 @@ public interface IAction {
     String getPetitionOwnerId();
 
     @Column(nullable = false)
-    IClient getClient();
-
-    @Column(nullable = false)
-    IOwner getOwner();
+    @ManyToOne
+    Owner getOwner();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)

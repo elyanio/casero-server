@@ -27,8 +27,8 @@
         </activity>
         <activity
             android:name=".view.RegisterOwner"
-            android:label="@string/title_activity_register_owner"
-         ></activity>
+            android:label="@string/title_activity_register_owner" />
+        <activity android:name=".view.ShowOwner"></activity>
     </application>
 
 </manifest>

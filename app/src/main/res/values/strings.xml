@@ -2,13 +2,15 @@
     <string name="app_name">CaseroServer</string>
     <string name="title_activity_register_owner">Registrar Propietario</string>
     <string name="celular">Celular</string>
+    <string name="carnet">Carnet de identidad</string>
     <string name="password">Password</string>
     <string name="user">Usuario</string>
     <string name="address">Dirección</string>
 
     <string name="referencia">Referencia</string>
     <string name="nombre">Nombre</string>
-    <string name="err_validate_cell">Teléfono incorrecto</string>
+    <string name="err_validate_cell">Teléfono no válido</string>
     <string name="err_validate">Existen campos vacios</string>
+    <string name="err_validate_carnet">Carnet no válido</string>
 
 </resources>

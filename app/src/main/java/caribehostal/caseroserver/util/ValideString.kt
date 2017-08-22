@@ -5,11 +5,11 @@ package caribehostal.caseroserver.util
  */
 
 object ValideString {
-    fun isPhone(cell: String): Boolean {
-        if (cell.length == 8 && cell[0] == '5') {
-            return true
-        } else {
-            return false
-        }
+    @JvmStatic fun isPhone(cell: String): Boolean {
+        return cell.length == 8 && cell[0] == '5'
+    }
+
+    @JvmStatic fun isCarnet(cell: String): Boolean {
+        return cell.length == 11
     }
 }

@@ -8,5 +8,7 @@
 
     <string name="referencia">Referencia</string>
     <string name="nombre">Nombre</string>
+    <string name="err_validate_cell">Teléfono incorrecto</string>
+    <string name="err_validate">Existen campos vacios</string>
 
 </resources>

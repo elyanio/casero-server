@@ -6,7 +6,7 @@
     tools:context="caribehostal.caseroserver.view.RegisterOwner">
 
 
-    <include layout="@layout/content_register_owner" />
+    <include layout="@layout/owner_content_register" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/owner_save"

@@ -51,7 +51,7 @@ public class RegisterOwner extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_owner);
+        setContentView(R.layout.owner_activity_register);
         ButterKnife.bind(this);
         save.setOnClickListener(new View.OnClickListener() {
             @Override

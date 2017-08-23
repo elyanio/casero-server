@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="caribehostal.caseroserver.view.RegisterOwner"
-    tools:showIn="@layout/activity_register_owner">
+    tools:showIn="@layout/owner_activity_register">
 
 
     <ScrollView

@@ -1,10 +1,11 @@
 package caribehostal.caseroserver.dataaccess;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
+import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 /**
@@ -23,7 +24,13 @@ public class DaoOwner {
         dataStore.upsert(owner);
     }
 
-    public List<Owner> getAllOwner() {
-        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get().toList();
+    public Result<Owner> getAllOwner() {
+        ArrayList<Owner> owners = new ArrayList<>();
+        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get();
+
+    }
+
+    public void remove(Owner owner) {
+        dataStore.delete(owner);
     }
 }

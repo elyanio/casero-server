@@ -1,18 +1,10 @@
-package caribehostal.caseroserver.view;
+package caribehostal.caseroserver.view.owner;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +14,9 @@ import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
+import caribehostal.caseroserver.view.owner.OwnerRecyclerAdapter;
 
-public class ShowOwner extends AppCompatActivity {
+public class OwnerShow extends AppCompatActivity {
     @BindView(R.id.owner_recycler_view)
     RecyclerView recyclerView;
     private List<Owner> dates;

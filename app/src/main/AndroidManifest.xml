@@ -26,9 +26,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.RegisterOwner"
+            android:name=".view.owner.OwnerRegister"
             android:label="@string/title_activity_register_owner" />
-        <activity android:name=".view.ShowOwner"></activity>
+        <activity android:name=".view.owner.OwnerShow"></activity>
     </application>
 
 </manifest>

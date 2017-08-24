@@ -1,4 +1,4 @@
-package caribehostal.caseroserver.view;
+package caribehostal.caseroserver.view.owner;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +15,7 @@ import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
 import caribehostal.caseroserver.util.ValideString;
 
-public class RegisterOwner extends AppCompatActivity {
+public class OwnerRegister extends AppCompatActivity {
     @BindView(R.id.owner_name)
     EditText name;
     @BindView(R.id.owner_carnet)

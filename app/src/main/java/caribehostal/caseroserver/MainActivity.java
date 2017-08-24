@@ -9,8 +9,8 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroserver.dataaccess.DatabaseSetup;
-import caribehostal.caseroserver.view.RegisterOwner;
-import caribehostal.caseroserver.view.ShowOwner;
+import caribehostal.caseroserver.view.owner.OwnerRegister;
+import caribehostal.caseroserver.view.owner.OwnerShow;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.button)
@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initShow() {
-        startActivity(new Intent(this, ShowOwner.class));
+        startActivity(new Intent(this, OwnerShow.class));
     }
 
     private void initRegister() {
-        startActivity(new Intent(this, RegisterOwner.class));
+        startActivity(new Intent(this, OwnerRegister.class));
     }
 
 

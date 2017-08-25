@@ -2,6 +2,7 @@ package caribehostal.caseroserver.view.owner;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,12 +42,20 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
+
         holder.name.setText(dataSet.get(listPosition).getFullName());
         holder.cell.setText(dataSet.get(listPosition).getCell());
         holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createPassowrdDialog(listPosition);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, OwnerDetail.class));
             }
         });
     }

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="caribehostal.caseroserver.view.owner.OwnerDetail">
+
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                        android:id="@+id/owner_card_detail"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        card_view:cardCornerRadius="10dp"
+                                        card_view:cardElevation="5dp"
+                                        card_view:cardUseCompatPadding="true"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/owner_datail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Asiel Alonso Chaviano"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_name"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Nombre Completo"
+                    android:textSize="10sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/owner_datail_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_name"
+                    android:layout_marginLeft="10dp"
+                    android:text="90062538346"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_id"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Carnet Identidad"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/owner_datail_cell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_id"
+                    android:layout_marginLeft="10dp"
+                    android:text="54520426"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_cell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_cell"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Móvil"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/owner_datail_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_cell"
+                    android:layout_marginLeft="10dp"
+                    android:text="Usurio"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_user"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Usuario"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/owner_datail_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_user"
+                    android:layout_marginLeft="10dp"
+                    android:text="Password"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_password"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Password"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/owner_datail_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_password"
+                    android:layout_marginLeft="10dp"
+                    android:text="Direccón"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_address"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Dirección"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/owner_datail_referencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_label_address"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="textMultiLine"
+                    android:text="Asiel Alonso Chaviano vive cerca de bolivia, camaguey en
+                    el centro de ciego de avila por ahipor el cayo coco llegandoa a santamaria"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/owner_label_referencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/owner_datail_referencia"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Referencia"
+                    android:textSize="10sp"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/owner_label_referencia"
+                    android:src="@drawable/ic_done_black_24dp"/>
+
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

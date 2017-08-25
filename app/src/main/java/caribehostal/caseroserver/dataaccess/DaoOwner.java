@@ -30,6 +30,10 @@ public class DaoOwner {
 
     }
 
+    public Owner getOwner(String id) {
+        return dataStore.select(Owner.class).where(Owner.CARNET_ID.eq(id)).get().firstOrNull();
+    }
+
     public void remove(Owner owner) {
         dataStore.delete(owner);
     }

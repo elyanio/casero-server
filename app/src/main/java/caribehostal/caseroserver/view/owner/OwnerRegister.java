@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.view.owner;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +13,15 @@ import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
-import caribehostal.caseroserver.util.StringValidation;
+
+import static caribehostal.caseroserver.util.StringValidation.isCubanCellphone;
+import static caribehostal.caseroserver.util.StringValidation.isCubanIdCard;
 
 public class OwnerRegister extends AppCompatActivity {
+
+    public static final int ACTION_INSERT = 0;
+    public static final int ACTION_EDIT = 1;
+
     @BindView(R.id.owner_name)
     EditText name;
     @BindView(R.id.owner_carnet)
@@ -56,8 +63,7 @@ public class OwnerRegister extends AppCompatActivity {
         ButterKnife.bind(this);
         bundle = getIntent().getExtras();
 
-        int action = (int) bundle.get("ACTION"); // 1 para editar 0 para insertar
-        if (action == 1)
+        if ((int) bundle.get("ACTION") == ACTION_EDIT)
             fillElements();
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -86,81 +92,60 @@ public class OwnerRegister extends AppCompatActivity {
     }
 
     private Owner getOwner() {
-        return new Owner().setFullName(name.getText().toString()).setCarnetId(carnet.getText().toString()).
-                setCell(cell.getText().toString()).setUser(user.getText().toString()).setPassword(password.getText().toString())
-                .setAddress(address.getText().toString()).setAddressDescription(addressDescription.getText().toString());
+        return new Owner()
+                .setFullName(name.getText().toString())
+                .setCarnetId(carnet.getText().toString())
+                .setCell(cell.getText().toString())
+                .setUser(user.getText().toString())
+                .setPassword(password.getText().toString())
+                .setAddress(address.getText().toString())
+                .setAddressDescription(addressDescription.getText().toString());
     }
 
-    private Boolean isValideInfo() {
+    private boolean isValideInfo() {
         return !(!validateName() | !validateCell() | !validateAddress() | !validateUser() | !validatePassword()
                 | !validateAddressDescription() | !validateCarnet());
     }
 
     private boolean validateCell() {
-        boolean phone = StringValidation.isCubanCellphone(cell.getText().toString());
-        if (phone) {
-            inputCell.setErrorEnabled(false);
-        } else {
-            inputCell.setError(getString(R.string.err_validate_cell));
-            return false;
-        }
-        return true;
+        return validate(isCubanCellphone(cell.getText()), inputCell, R.string.err_validate_cell);
     }
 
     private boolean validateCarnet() {
-        boolean carnetID = StringValidation.isCubanIdCard(carnet.getText().toString());
-        if (carnetID) {
-            inputCarnet.setErrorEnabled(false);
-        } else {
-            inputCarnet.setError(getString(R.string.err_validate_carnet));
-            return false;
-        }
-        return true;
+        return validate(isCubanIdCard(carnet.getText()), inputCarnet, R.string.err_validate_carnet);
     }
 
     private boolean validateName() {
-        if (name.getText().toString().trim().isEmpty()) {
-            inputName.setError(getString(R.string.err_validate));
-            return false;
-        } else {
-            inputName.setErrorEnabled(false);
-        }
-        return true;
+        return validateEmptyField(name, inputName);
     }
 
     private boolean validateUser() {
-        if (user.getText().toString().trim().isEmpty()) {
-            inputUser.setError(getString(R.string.err_validate));
-            return false;
-        } else
-            inputUser.setErrorEnabled(false);
-        return true;
+        return validateEmptyField(user, inputUser);
     }
 
     private boolean validateAddress() {
-        if (address.getText().toString().trim().isEmpty()) {
-            inputAddress.setError(getString(R.string.err_validate));
-            return false;
-        } else
-            inputAddress.setErrorEnabled(false);
-        return true;
+        return validateEmptyField(address, inputAddress);
     }
 
     private boolean validatePassword() {
-        if (password.getText().toString().trim().isEmpty()) {
-            inputPass.setError(getString(R.string.err_validate));
-            return false;
-        } else
-            inputPass.setErrorEnabled(false);
-        return true;
+        return validateEmptyField(password, inputPass);
     }
 
     private boolean validateAddressDescription() {
-        if (addressDescription.getText().toString().trim().isEmpty()) {
-            inputReference.setError(getString(R.string.err_validate));
+        return validateEmptyField(addressDescription, inputReference);
+    }
+
+    private boolean validateEmptyField(EditText input, TextInputLayout layout) {
+        return validate(!input.getText().toString().isEmpty(), layout, R.string.err_validate);
+    }
+
+    private boolean validate(boolean check, TextInputLayout layout, @StringRes int message) {
+        if(check) {
+            layout.setErrorEnabled(true);
+            return true;
+        } else {
+            layout.setError(getString(message));
             return false;
-        } else
-            inputReference.setErrorEnabled(false);
-        return true;
+        }
     }
 }

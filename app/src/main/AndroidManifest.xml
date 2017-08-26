@@ -31,6 +31,8 @@
         <activity android:name=".view.owner.OwnerShow"/>
         <activity android:name=".view.owner.OwnerDetail">
         </activity>
+        <activity android:name=".view.action.ActionShow">
+        </activity>
     </application>
 
 </manifest>

@@ -19,8 +19,10 @@ import static caribehostal.caseroserver.util.StringValidation.isCubanIdCard;
 
 public class OwnerRegister extends AppCompatActivity {
 
+    public static final String INTENT_ACTION = "ACTION";
     public static final int ACTION_INSERT = 0;
     public static final int ACTION_EDIT = 1;
+    public static final String INTENT_CELL = "CELL";
 
     @BindView(R.id.owner_name)
     EditText name;
@@ -63,7 +65,7 @@ public class OwnerRegister extends AppCompatActivity {
         ButterKnife.bind(this);
         bundle = getIntent().getExtras();
 
-        if ((int) bundle.get("ACTION") == ACTION_EDIT)
+        if ((int) bundle.get(INTENT_ACTION) == ACTION_EDIT)
             fillElements();
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +83,7 @@ public class OwnerRegister extends AppCompatActivity {
 
     private void fillElements() {
         DaoOwner daoOwner = new DaoOwner();
-        Owner owner = daoOwner.getOwner(bundle.getString("CELL"));
+        Owner owner = daoOwner.getOwner(bundle.getString(INTENT_CELL));
         name.setText(owner.getFullName());
         carnet.setText(owner.getCarnetId());
         cell.setText(owner.getCell());

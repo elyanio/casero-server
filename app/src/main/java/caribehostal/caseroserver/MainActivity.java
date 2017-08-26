@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRegister() {
         Bundle bundle = new Bundle();
-        bundle.putInt("ACTION", OwnerRegister.ACTION_INSERT);
+        bundle.putInt(OwnerRegister.INTENT_ACTION, OwnerRegister.ACTION_INSERT);
 
         startActivity(new Intent(this, OwnerRegister.class).putExtras(bundle));
     }

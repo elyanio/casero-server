@@ -58,8 +58,8 @@ public class OwnerDetail extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_edit) {
             Bundle bundle = new Bundle();
-            bundle.putInt("ACTION", OwnerRegister.ACTION_EDIT);
-            bundle.putString("CELL", ownerCell.getText().toString());
+            bundle.putInt(OwnerRegister.INTENT_ACTION, OwnerRegister.ACTION_EDIT);
+            bundle.putString(OwnerRegister.INTENT_CELL, ownerCell.getText().toString());
             startActivity(new Intent(this, OwnerRegister.class).putExtras(bundle));
             finish();
             return true;

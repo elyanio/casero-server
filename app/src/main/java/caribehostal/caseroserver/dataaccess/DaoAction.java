@@ -3,9 +3,12 @@ package caribehostal.caseroserver.dataaccess;
 //import caribehostal.caseroserver.datamodel.Action;
 //import caribehostal.caseroserver.datamodel.Owner;
 
+import java.util.ArrayList;
+
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
+import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 import static caribehostal.caseroserver.datamodel.Owner.CARNET_ID;
@@ -32,5 +35,10 @@ public class DaoAction {
             return false;
         }
         return true;
+    }
+
+    public Result<Action> getAllActions() {
+        ArrayList<Action> actions = new ArrayList<>();
+        return dataStore.select(Action.class).orderBy(Action.DATE_ACTION).get();
     }
 }

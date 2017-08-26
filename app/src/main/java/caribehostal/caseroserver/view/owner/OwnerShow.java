@@ -14,12 +14,11 @@ import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
-import caribehostal.caseroserver.view.owner.OwnerRecyclerAdapter;
 
 public class OwnerShow extends AppCompatActivity {
     @BindView(R.id.owner_recycler_view)
     RecyclerView recyclerView;
-    private List<Owner> dates;
+    private List<Owner> owners;
     private OwnerRecyclerAdapter adapter;
 
     @Override
@@ -31,10 +30,10 @@ public class OwnerShow extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         DaoOwner daoOwner = new DaoOwner();
-        dates = new ArrayList<Owner>();
-        daoOwner.getAllOwner().collect(dates);
+        owners = new ArrayList<>();
+        daoOwner.getAllOwner().collect(owners);
 
-        adapter = new OwnerRecyclerAdapter(dates, this);
+        adapter = new OwnerRecyclerAdapter(owners, this);
         recyclerView.setAdapter(adapter);
     }
 

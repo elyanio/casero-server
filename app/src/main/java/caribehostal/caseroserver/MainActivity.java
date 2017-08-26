@@ -47,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRegister() {
-        startActivity(new Intent(this, OwnerRegister.class));
+        Bundle bundle = new Bundle();
+        bundle.putInt("ACTION", 0); //1 para editar 0 para registrar
+
+        startActivity(new Intent(this, OwnerRegister.class).putExtras(bundle));
     }
 
 

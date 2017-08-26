@@ -1,6 +1,5 @@
 package caribehostal.caseroserver.view.owner;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -10,7 +9,6 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
@@ -59,11 +57,9 @@ public class OwnerRegister extends AppCompatActivity {
         bundle = getIntent().getExtras();
 
         int action = (int) bundle.get("ACTION"); // 1 para editar 0 para insertar
-        if (action == 1) {
+        if (action == 1)
             fillElements();
-        } else {
 
-        }
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +75,7 @@ public class OwnerRegister extends AppCompatActivity {
 
     private void fillElements() {
         DaoOwner daoOwner = new DaoOwner();
-        Owner owner = daoOwner.getOwner(bundle.getString("ID"));
+        Owner owner = daoOwner.getOwner(bundle.getString("CELL"));
         name.setText(owner.getFullName());
         carnet.setText(owner.getCarnetId());
         cell.setText(owner.getCell());

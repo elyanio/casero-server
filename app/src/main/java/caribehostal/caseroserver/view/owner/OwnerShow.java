@@ -37,6 +37,12 @@ public class OwnerShow extends AppCompatActivity {
         adapter = new OwnerRecyclerAdapter(dates, this);
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        adapter.updateView();
+    }
 }
 
 

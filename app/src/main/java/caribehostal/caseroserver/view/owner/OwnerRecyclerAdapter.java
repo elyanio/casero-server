@@ -3,14 +3,17 @@ package caribehostal.caseroserver.view.owner;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import caribehostal.caseroserver.R;
@@ -55,7 +58,9 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, OwnerDetail.class));
+                Bundle bundle = new Bundle();
+                bundle.putString("CELL", holder.cell.getText().toString());
+                context.startActivity(new Intent(context, OwnerDetail.class).putExtras(bundle));
             }
         });
     }
@@ -101,5 +106,12 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
             }
         }).setView(item)
                 .show();
+    }
+
+    public void updateView() {
+        DaoOwner daoOwner = new DaoOwner();
+        dataSet = new ArrayList<Owner>();
+        daoOwner.getAllOwner().collect(dataSet);
+        notifyDataSetChanged();
     }
 }

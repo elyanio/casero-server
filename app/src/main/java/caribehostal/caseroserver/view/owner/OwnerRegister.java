@@ -96,7 +96,7 @@ public class OwnerRegister extends AppCompatActivity {
                 | !validateAddressDescription() | !validateCarnet());
     }
 
-    private Boolean validateCell() {
+    private boolean validateCell() {
         boolean phone = StringValidation.isCubanCellphone(cell.getText().toString());
         if (phone) {
             inputCell.setErrorEnabled(false);
@@ -107,7 +107,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validateCarnet() {
+    private boolean validateCarnet() {
         boolean carnetID = StringValidation.isCubanIdCard(carnet.getText().toString());
         if (carnetID) {
             inputCarnet.setErrorEnabled(false);
@@ -118,7 +118,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validateName() {
+    private boolean validateName() {
         if (name.getText().toString().trim().isEmpty()) {
             inputName.setError(getString(R.string.err_validate));
             return false;
@@ -128,7 +128,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validateUser() {
+    private boolean validateUser() {
         if (user.getText().toString().trim().isEmpty()) {
             inputUser.setError(getString(R.string.err_validate));
             return false;
@@ -137,7 +137,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validateAddress() {
+    private boolean validateAddress() {
         if (address.getText().toString().trim().isEmpty()) {
             inputAddress.setError(getString(R.string.err_validate));
             return false;
@@ -146,7 +146,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validatePassword() {
+    private boolean validatePassword() {
         if (password.getText().toString().trim().isEmpty()) {
             inputPass.setError(getString(R.string.err_validate));
             return false;
@@ -155,7 +155,7 @@ public class OwnerRegister extends AppCompatActivity {
         return true;
     }
 
-    private Boolean validateAddressDescription() {
+    private boolean validateAddressDescription() {
         if (addressDescription.getText().toString().trim().isEmpty()) {
             inputReference.setError(getString(R.string.err_validate));
             return false;

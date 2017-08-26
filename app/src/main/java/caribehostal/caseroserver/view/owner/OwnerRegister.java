@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
-import caribehostal.caseroserver.util.ValideString;
+import caribehostal.caseroserver.util.StringValidation;
 
 public class OwnerRegister extends AppCompatActivity {
     @BindView(R.id.owner_name)
@@ -97,7 +97,7 @@ public class OwnerRegister extends AppCompatActivity {
     }
 
     private Boolean validateCell() {
-        boolean phone = ValideString.isPhone(cell.getText().toString());
+        boolean phone = StringValidation.isCubanCellphone(cell.getText().toString());
         if (phone) {
             inputCell.setErrorEnabled(false);
         } else {
@@ -108,7 +108,7 @@ public class OwnerRegister extends AppCompatActivity {
     }
 
     private Boolean validateCarnet() {
-        boolean carnetID = ValideString.isCarnet(carnet.getText().toString());
+        boolean carnetID = StringValidation.isCubanIdCard(carnet.getText().toString());
         if (carnetID) {
             inputCarnet.setErrorEnabled(false);
         } else {

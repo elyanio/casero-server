@@ -1,9 +1,6 @@
 package caribehostal.caseroserver.dataaccess;
 
-//import caribehostal.caseroserver.datamodel.Action;
-//import caribehostal.caseroserver.datamodel.Owner;
-
-import java.util.ArrayList;
+import org.threeten.bp.LocalDate;
 
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
@@ -35,7 +32,12 @@ public class DaoAction {
     }
 
     public Result<Action> getAllActions() {
-        ArrayList<Action> actions = new ArrayList<>();
         return dataStore.select(Action.class).orderBy(Action.DATE_ACTION).get();
+    }
+
+    public Result<Action> findActions(LocalDate start, LocalDate end) {
+        return dataStore.select(Action.class)
+                .where(Action.DATE_ACTION.between(start, end))
+                .get();
     }
 }

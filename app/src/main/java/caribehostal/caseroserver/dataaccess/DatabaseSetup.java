@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import caribehostal.appcasero.datamodel.ActionType;
+import caribehostal.caseroserver.datamodel.ActionType;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionClient;
 import caribehostal.caseroserver.datamodel.ActionState;

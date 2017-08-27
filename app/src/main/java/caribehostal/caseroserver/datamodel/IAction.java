@@ -2,8 +2,6 @@ package caribehostal.caseroserver.datamodel;
 
 import org.threeten.bp.LocalDate;
 
-import caribehostal.appcasero.datamodel.ActionType;
-import caribehostal.appcasero.datamodel.ActionTypeConverter;
 import io.requery.Column;
 import io.requery.Convert;
 import io.requery.Entity;
@@ -15,7 +13,7 @@ import io.requery.Persistable;
 import static io.requery.PropertyNameStyle.FLUENT_BEAN;
 
 /**
- * Created by Fernando on 16/08/2017.
+ * @author Fernando
  */
 @Entity(propertyNameStyle = FLUENT_BEAN)
 public interface IAction extends Persistable {

@@ -7,9 +7,8 @@ import io.requery.Converter;
 import io.requery.Nullable;
 
 /**
- * Created by rainermf on 11/2/2017.
+ * @author rainermf
  */
-
 public class LocalDateConverter implements Converter<LocalDate, String> {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y-MM-dd");
 

@@ -1,8 +1,12 @@
-package caribehostal.appcasero.datamodel
+package caribehostal.caseroserver.datamodel
+
+import io.requery.converter.EnumOrdinalConverter
 
 /**
- * Created by Fernando on 16/08/2017.
- */
+* @author Fernando
+*/
 enum class ActionType {
     EDIT, INSERT
 }
+
+class ActionTypeConverter : EnumOrdinalConverter<ActionType>(ActionType::class.java)

@@ -14,9 +14,8 @@ import io.requery.sql.EntityDataStore;
 import static caribehostal.caseroserver.datamodel.Owner.CARNET_ID;
 
 /**
- * Created by asio on 8/17/2017.
+ * @author asio
  */
-
 public class DaoAction {
     private EntityDataStore<Persistable> dataStore;
 
@@ -30,11 +29,9 @@ public class DaoAction {
 
     public boolean existAction(Action action) {
         Action act = dataStore.select(Action.class).join(Owner.class).on(Action.OWNER_ID.eq(CARNET_ID))
-                .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId())).and(Owner.CELL.eq(action.getOwner().getCell())).get().firstOrNull();
-        if (act == null) {
-            return false;
-        }
-        return true;
+                .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId()))
+                .and(Owner.CELL.eq(action.getOwner().getCell())).get().firstOrNull();
+        return act != null;
     }
 
     public Result<Action> getAllActions() {

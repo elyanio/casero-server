@@ -15,9 +15,8 @@ import io.requery.sql.EntityDataStore;
 import static android.os.Environment.getExternalStorageDirectory;
 
 /**
- * Created by asio on 8/17/2017.
+ * @author asio
  */
-
 public enum DataStoreHolder {
     INSTANCE;
 
@@ -45,9 +44,8 @@ public enum DataStoreHolder {
         return new EntityDataStore<>(configuration);
     }
 
-    public Boolean existDbFile() {
-        if (dbFile.exists()) return true;
-        return false;
+    public boolean existsDbFile() {
+        return dbFile.exists();
     }
 
     public File getDbFile() {

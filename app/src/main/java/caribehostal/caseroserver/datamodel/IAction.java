@@ -10,9 +10,7 @@ import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
 import io.requery.ManyToOne;
-import io.requery.OneToMany;
 import io.requery.Persistable;
-import io.requery.query.Result;
 
 import static io.requery.PropertyNameStyle.FLUENT_BEAN;
 

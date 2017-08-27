@@ -12,7 +12,8 @@ import java.util.List;
 
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.datamodel.Action;
-import caribehostal.caseroserver.view.owner.OwnerRecyclerAdapter;
+import caribehostal.caseroserver.datamodel.ActionStateConverter;
+import caribehostal.caseroserver.datamodel.LocalDateConverter;
 
 /**
  * Created by asio on 8/26/2017.
@@ -39,7 +40,10 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.action_name.setText(actions.get(position).getPetitionOwnerId());
+        holder.action_id_petition.setText(actions.get(position).getPetitionOwnerId());
+        holder.action_owner.setText(actions.get(position).getOwner().getFullName());
+        holder.action_state.setText(new ActionStateConverter().convertToPersisted(actions.get(position).getActionState()));
+        holder.action_date.setText(new LocalDateConverter().convertToPersisted(actions.get(position).getDateAction()));
     }
 
     @Override
@@ -48,14 +52,17 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView action_name;
+
+        TextView action_owner;
+        TextView action_id_petition;
         TextView action_date;
         TextView action_state;
         ImageView buttonRemove;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            action_name = (TextView) itemView.findViewById(R.id.item_action_name);
+            action_owner = (TextView) itemView.findViewById(R.id.item_action_owner);
+            action_id_petition = (TextView) itemView.findViewById(R.id.item_action_id);
             action_date = (TextView) itemView.findViewById(R.id.item_action_date);
             action_state = (TextView) itemView.findViewById(R.id.item_action_state);
             buttonRemove = (ImageView) itemView.findViewById(R.id.item_action_delete);

@@ -2,6 +2,8 @@ package caribehostal.caseroserver.dataaccess;
 
 import org.threeten.bp.LocalDate;
 
+import java.util.List;
+
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
@@ -35,9 +37,12 @@ public class DaoAction {
         return dataStore.select(Action.class).orderBy(Action.DATE_ACTION).get();
     }
 
-    public Result<Action> findActions(LocalDate start, LocalDate end) {
+    public List<Action> findActions(Owner owner, LocalDate startDate, LocalDate endDate) {
         return dataStore.select(Action.class)
-                .where(Action.DATE_ACTION.between(start, end))
-                .get();
+                .where(Action.OWNER.eq(owner))
+                .and(Action.DATE_ACTION.between(startDate, endDate))
+                .orderBy(Action.DATE_ACTION)
+                .get()
+                .toList();
     }
 }

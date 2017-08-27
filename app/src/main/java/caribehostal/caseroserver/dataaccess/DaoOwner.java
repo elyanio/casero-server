@@ -1,17 +1,19 @@
 package caribehostal.caseroserver.dataaccess;
 
 
-import java.util.ArrayList;
+import org.threeten.bp.LocalDate;
 
+import java.util.List;
+
+import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
 import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 /**
- * Created by asio on 8/17/2017.
+ * @author asio
  */
-
 public class DaoOwner {
 
     private EntityDataStore<Persistable> dataStore;
@@ -25,13 +27,20 @@ public class DaoOwner {
     }
 
     public Result<Owner> getAllOwner() {
-        ArrayList<Owner> owners = new ArrayList<>();
         return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get();
-
     }
 
     public Owner getOwner(String cell) {
         return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).get().firstOrNull();
+    }
+
+    public List<Owner> getOwnersForPayingPeriod(LocalDate startDate, LocalDate endDate) {
+        return dataStore.select(Owner.class)
+                .join(Action.class).on(Action.OWNER_ID.eq(Owner.CARNET_ID))
+                .where(Action.DATE_ACTION.between(startDate, endDate))
+                .groupBy(Owner.CARNET_ID)
+                .get()
+                .toList();
     }
 
     public void remove(Owner owner) {

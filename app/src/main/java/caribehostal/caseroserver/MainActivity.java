@@ -9,6 +9,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroserver.dataaccess.DatabaseSetup;
+import caribehostal.caseroserver.view.action.ActionShow;
 import caribehostal.caseroserver.view.owner.OwnerRegister;
 import caribehostal.caseroserver.view.owner.OwnerShow;
 
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     Button btRegister;
     @BindView(R.id.button2)
     Button btShow;
+
+    @BindView(R.id.button3)
+    Button btShowAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +37,16 @@ public class MainActivity extends AppCompatActivity {
                 initRegister();
             }
         });
-
         btShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 initShow();
+            }
+        });
+        btShowAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ActionShow.class));
             }
         });
     }

@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".view.action.ActionShow">
         </activity>
+        <activity android:name=".view.action.ActionDetail">
+        </activity>
     </application>
 
 </manifest>

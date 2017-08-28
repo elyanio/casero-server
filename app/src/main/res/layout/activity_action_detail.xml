@@ -10,11 +10,9 @@
                                         android:id="@+id/action_card_detail"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_margin="2dp"
                                         card_view:cardCornerRadius="10dp"
-                                        card_view:cardElevation="5dp"
-                                        card_view:cardUseCompatPadding="true"
-                                        tools:layout_editor_absoluteX="8dp"
-                                        tools:layout_editor_absoluteY="8dp">
+                                        card_view:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

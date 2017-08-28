@@ -1,7 +1,6 @@
 package caribehostal.caseroserver.dataaccess;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.File;
 
@@ -12,8 +11,6 @@ import io.requery.android.sqlite.DatabaseSource;
 import io.requery.sql.Configuration;
 import io.requery.sql.EntityDataStore;
 
-import static android.os.Environment.getExternalStorageDirectory;
-
 /**
  * @author asio
  */
@@ -21,13 +18,8 @@ public enum DataStoreHolder {
     INSTANCE;
 
     private EntityDataStore<Persistable> entityDataStore;
-    private File directory = new File(getExternalStorageDirectory().getAbsolutePath() + "/Casero");
-    private File dbFile = new File(directory.getAbsolutePath() + "/caseroServer.db");
-    private int DB_VERSION = 1;
-
-    public EntityDataStore<Persistable> getEntityDataStore() {
-        return entityDataStore;
-    }
+    private File dbFile = new File(Resources.INSTANCE.getDirectory() + "/caseroServer.db");
+    private static final int DB_VERSION = 1;
 
     public EntityDataStore<Persistable> getDataStore() {
         if (entityDataStore == null) {

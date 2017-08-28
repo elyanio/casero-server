@@ -2,14 +2,12 @@ package caribehostal.caseroserver;
 
 import android.app.Application;
 
+import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.Locale;
 
-import caribehostal.caseroserver.dataaccess.DataStoreHolder;
 import caribehostal.caseroserver.dataaccess.DatabaseSetup;
-import io.requery.Persistable;
-import io.requery.sql.EntityDataStore;
 
 /**
  * @author rainermf
@@ -33,5 +31,7 @@ public class CaseroServerApplication extends Application {
         DatabaseSetup databaseSetup = new DatabaseSetup();
         databaseSetup.mockDatabase();
         databaseSetup.testExistAction();
+
+        SoLoader.init(this, false);
     }
 }

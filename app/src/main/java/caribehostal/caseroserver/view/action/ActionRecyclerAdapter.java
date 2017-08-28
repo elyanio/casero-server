@@ -1,12 +1,15 @@
 package caribehostal.caseroserver.view.action;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,11 +42,20 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.action_id_petition.setText(actions.get(position).getPetitionOwnerId());
         holder.action_owner.setText(actions.get(position).getOwner().getFullName());
         holder.action_state.setText(new ActionStateConverter().convertToPersisted(actions.get(position).getActionState()));
         holder.action_date.setText(new LocalDateConverter().convertToPersisted(actions.get(position).getDateAction()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("IDPET", actions.get(position).getId());
+                context.startActivity(new Intent(context, ActionDetail.class).putExtras(bundle));
+            }
+        });
     }
 
     @Override

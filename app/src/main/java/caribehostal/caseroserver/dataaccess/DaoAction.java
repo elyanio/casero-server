@@ -37,6 +37,12 @@ public class DaoAction {
         return dataStore.select(Action.class).orderBy(Action.DATE_ACTION).get();
     }
 
+    public Action getActionByPetitionId(int idPetition) {
+        return dataStore.select(Action.class)
+                .where(Action.ID.eq(idPetition))
+                .get().first();
+    }
+
     public List<Action> findActions(Owner owner, LocalDate startDate, LocalDate endDate) {
         return dataStore.select(Action.class)
                 .where(Action.OWNER.eq(owner))

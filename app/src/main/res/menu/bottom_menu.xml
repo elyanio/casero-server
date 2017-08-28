@@ -2,13 +2,13 @@
     <item
         android:id="@+id/recents"
         android:icon="@drawable/ic_update_black_24dp"
-        android:title="Recents"/>
+        android:title="Pendientes"/>
     <item
         android:id="@+id/favorites"
         android:icon="@drawable/ic_mail_black_24dp"
-        android:title="Favorites"/>
+        android:title="Todos"/>
     <item
         android:id="@+id/nearby"
         android:icon="@drawable/ic_drafts_black_24dp"
-        android:title="Nearby"/>
+        android:title="Finalizados"/>
 </menu>

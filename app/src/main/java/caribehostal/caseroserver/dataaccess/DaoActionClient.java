@@ -27,4 +27,8 @@ public class DaoActionClient {
         return dataStore.select(Client.class).join(ActionClient.class).on(Client.PASSPORT
                 .eq(ActionClient.CLIENT_ID)).where(ActionClient.ACTION.eq(action)).get();
     }
+
+    public Result<ActionClient> getActionClients(Action action) {
+        return dataStore.select(ActionClient.class).where(ActionClient.ACTION.eq(action)).get();
+    }
 }

@@ -17,6 +17,7 @@ import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.dataaccess.DaoActionClient;
 import caribehostal.caseroserver.datamodel.Action;
+import caribehostal.caseroserver.datamodel.ActionClient;
 import caribehostal.caseroserver.datamodel.Client;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
 
@@ -30,7 +31,7 @@ public class ActionDetail extends AppCompatActivity {
 
     @BindView(R.id.recycler_client_passaport)
     RecyclerView recyclerView;
-    private List<Client> clients;
+    private List<ActionClient> actionClients;
     private ActionDetailRecyclerAdapter actionDetailRecyclerAdapter;
 
     @Override
@@ -38,7 +39,7 @@ public class ActionDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_detail);
         ButterKnife.bind(this);
-        clients = new ArrayList<>();
+        actionClients = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
         int idPetition = extras.getInt("IDPET");
@@ -46,17 +47,17 @@ public class ActionDetail extends AppCompatActivity {
         Action action = daoAction.getActionByPetitionId(idPetition);
 
         fillValues(action);
-        findClients(action);
+        findActionClients(action);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        actionDetailRecyclerAdapter = new ActionDetailRecyclerAdapter(clients, this);
+        actionDetailRecyclerAdapter = new ActionDetailRecyclerAdapter(actionClients, this);
         recyclerView.setAdapter(actionDetailRecyclerAdapter);
     }
 
-    private void findClients(Action action) {
+    private void findActionClients(Action action) {
         DaoActionClient daoActionClient = new DaoActionClient();
-        daoActionClient.getClientsByAction(action).collect(clients);
+        daoActionClient.getActionClients(action).collect(actionClients);
     }
 
     private void fillValues(Action action) {

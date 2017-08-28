@@ -1,18 +1,19 @@
 package caribehostal.caseroserver.view.action;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import caribehostal.caseroserver.R;
-import caribehostal.caseroserver.datamodel.Client;
+import caribehostal.caseroserver.dataaccess.DaoActionClient;
+import caribehostal.caseroserver.datamodel.ActionClient;
 
 /**
  * Created by asio on 8/27/2017.
@@ -20,11 +21,11 @@ import caribehostal.caseroserver.datamodel.Client;
 
 public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDetailRecyclerAdapter.MyViewHolder> {
 
-    private List<Client> clients;
+    private List<ActionClient> actionClients;
     private Context context;
 
-    public ActionDetailRecyclerAdapter(List<Client> clients, Context context) {
-        this.clients = clients;
+    public ActionDetailRecyclerAdapter(List<ActionClient> actionClients, Context context) {
+        this.actionClients = actionClients;
         this.context = context;
     }
 
@@ -38,13 +39,21 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.actionClientPassaport.setText(clients.get(position).getPassport());
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        holder.actionClientPassaport.setText(actionClients.get(position).getClient().getPassport());
+        holder.actionClientCode.setText(actionClients.get(position).getActionClientCode());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createCodeDialog(position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return clients.size();
+        return actionClients.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -56,5 +65,33 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
             actionClientPassaport = (TextView) itemView.findViewById(R.id.client_passaport);
             actionClientCode = (TextView) itemView.findViewById(R.id.client_code_action);
         }
+    }
+
+    private void createCodeDialog(final int position) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        final View item = inflater.inflate(R.layout.item_code, null);
+        new AlertDialog.Builder(context).setTitle("Ingresar Código")
+                .setPositiveButton("Acepetar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TextView textView = (TextView) item.findViewById(R.id.textCode);
+                        ActionClient actionClient = actionClients.get(position).setActionClientCode(textView.getText().toString());
+                        actionClients.remove(position);
+                        actionClients.add(position, actionClient);
+                        updateActionClient(actionClient);
+                    }
+                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        }).setView(item)
+                .show();
+    }
+
+    private void updateActionClient(ActionClient actionClient) {
+        DaoActionClient daoActionClient = new DaoActionClient();
+        daoActionClient.upsertAction(actionClient);
+        notifyDataSetChanged();
     }
 }

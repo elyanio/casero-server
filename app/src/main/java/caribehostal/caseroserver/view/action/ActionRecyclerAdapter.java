@@ -80,4 +80,13 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
             buttonRemove = (ImageView) itemView.findViewById(R.id.item_action_delete);
         }
     }
+
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+        notifyDataSetChanged();
+    }
 }

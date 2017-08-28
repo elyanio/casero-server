@@ -5,6 +5,7 @@ import org.threeten.bp.LocalDate;
 import java.util.List;
 
 import caribehostal.caseroserver.datamodel.Action;
+import caribehostal.caseroserver.datamodel.ActionState;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
 import io.requery.query.Result;
@@ -50,5 +51,17 @@ public class DaoAction {
                 .orderBy(Action.DATE_ACTION)
                 .get()
                 .toList();
+    }
+
+    public Result<Action> getPendingActions() {
+        return dataStore.select(Action.class)
+                .where(Action.ACTION_STATE.eq(ActionState.PENDING))
+                .orderBy(Action.DATE_ACTION).get();
+    }
+
+    public Result<Action> getFinishActions() {
+        return dataStore.select(Action.class)
+                .where(Action.ACTION_STATE.eq(ActionState.FINISH))
+                .orderBy(Action.DATE_ACTION).get();
     }
 }

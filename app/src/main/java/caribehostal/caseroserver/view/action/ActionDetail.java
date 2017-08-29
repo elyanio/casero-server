@@ -16,17 +16,19 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
+import caribehostal.caseroserver.comunication.SmsSender;
 import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.dataaccess.DaoActionClient;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionClient;
 import caribehostal.caseroserver.datamodel.ActionState;
-import caribehostal.caseroserver.datamodel.ActionStateConverter;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
 
 public class ActionDetail extends AppCompatActivity {
 
     @BindView(R.id.action_detail_name) TextView ownerName;
+    @BindView(R.id.action_detail_user) TextView ownerUser;
+    @BindView(R.id.action_detail_password) TextView ownerPassword;
     @BindView(R.id.action_detail_checkIn) TextView checkIn;
     @BindView(R.id.action_detail_checkOut) TextView checkOut;
     @BindView(R.id.action_detail_code) TextView code;
@@ -66,6 +68,8 @@ public class ActionDetail extends AppCompatActivity {
 
     private void fillValues(Action action) {
         ownerName.setText(action.getOwner().getFullName());
+        ownerUser.setText(action.getOwner().getUser());
+        ownerPassword.setText(action.getOwner().getPassword());
         checkIn.setText(new LocalDateConverter().convertToPersisted(action.getCheckIn()));
         checkOut.setText(new LocalDateConverter().convertToPersisted(action.getCheckOut()));
         messageDate.setText(new LocalDateConverter().convertToPersisted(action.getDateAction()));
@@ -86,6 +90,8 @@ public class ActionDetail extends AppCompatActivity {
                 if (actionDetailRecyclerAdapter.isAllChecked()) {
                     action.setActionState(ActionState.FINISH);
                     daoAction.upsertAction(action);
+                    String message = buildMessage();
+//                    sendMessage(message);
                     finish();
                     return true;
                 } else {
@@ -96,5 +102,21 @@ public class ActionDetail extends AppCompatActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private String buildMessage() {
+        List<ActionClient> actionClients = actionDetailRecyclerAdapter.getActionClients();
+        String petitionOwnerId = action.getPetitionOwnerId();
+        String message = petitionOwnerId;
+        for (int i = 0; i < actionClients.size(); i++) {
+            message += "#" + actionClients.get(i).getClient().getPassport() + "$" + actionClients.get(i).getActionClientCode();
+        }
+        return message;
+    }
+
+    private void sendMessage(String message) {
+        String cell = action.getOwner().getCell();
+        SmsSender smsSender = new SmsSender();
+        smsSender.enviarMensaje(cell, message);
     }
 }

@@ -115,7 +115,7 @@ public class DatabaseSetup {
 
     public boolean testExistAction() {
 
-//        Client client = new Client().setPassport("123456780");
+//        Client client = new Client().setPassaport("123456780");
         Owner owner = new Owner().setFullName("Asiel Alonso").setAddress("Boliñía")
                 .setAddressDescription("Ciego").setCarnetId("90062538346")
                 .setCell("545204265").setPassword("asio").setUser("S0100");

@@ -44,6 +44,7 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.actionClientPassaport.setText(actionClients.get(position).getClient().getPassport());
         holder.actionClientCode.setText(actionClients.get(position).getActionClientCode());
+        checked[position] = actionClients.get(position).getActionClientCode();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,5 +105,9 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
             }
         }
         return true;
+    }
+
+    public List<ActionClient> getActionClients() {
+        return actionClients;
     }
 }

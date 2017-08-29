@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,9 +108,7 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
     }
 
     public void updateView() {
-        DaoOwner daoOwner = new DaoOwner();
-        dataSet = new ArrayList<Owner>();
-        daoOwner.getAllOwner().collect(dataSet);
+        dataSet = new DaoOwner().getAllOwners();
         notifyDataSetChanged();
     }
 }

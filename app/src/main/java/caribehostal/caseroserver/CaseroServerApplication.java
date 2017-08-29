@@ -7,6 +7,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 import java.util.Locale;
 
 import caribehostal.caseroserver.dataaccess.DataStoreHolder;
+import caribehostal.caseroserver.dataaccess.DatabaseSetup;
 import io.requery.Persistable;
 import io.requery.sql.EntityDataStore;
 
@@ -28,13 +29,9 @@ public class CaseroServerApplication extends Application {
         instance = this;
         AndroidThreeTen.init(this);
         Locale.setDefault(new Locale("es"));
-    }
 
-    /**
-     * @deprecated Use DataStoreHolder.INSTANCE.getDataStore()
-     */
-    @Deprecated
-    public EntityDataStore<Persistable> getDataStore() {
-        return DataStoreHolder.INSTANCE.getDataStore();
+        DatabaseSetup databaseSetup = new DatabaseSetup();
+        databaseSetup.mockDatabase();
+        databaseSetup.testExistAction();
     }
 }

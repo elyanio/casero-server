@@ -1,6 +1,5 @@
 package caribehostal.caseroserver.dataaccess;
 
-
 import org.threeten.bp.LocalDate;
 
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
-import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 /**
@@ -26,8 +24,8 @@ public class DaoOwner {
         dataStore.upsert(owner);
     }
 
-    public Result<Owner> getAllOwner() {
-        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get();
+    public List<Owner> getAllOwners() {
+        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get().toList();
     }
 
     public Owner getOwner(String cell) {

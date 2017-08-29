@@ -29,9 +29,7 @@ public class OwnerShow extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        DaoOwner daoOwner = new DaoOwner();
-        owners = new ArrayList<>();
-        daoOwner.getAllOwner().collect(owners);
+        owners = new DaoOwner().getAllOwners();
 
         adapter = new OwnerRecyclerAdapter(owners, this);
         recyclerView.setAdapter(adapter);

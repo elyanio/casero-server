@@ -3,8 +3,10 @@ package caribehostal.caseroserver.report
 import caribehostal.caseroserver.dataaccess.DaoAction
 import caribehostal.caseroserver.dataaccess.DaoOwner
 import caribehostal.caseroserver.dataaccess.DaoClient
+import caribehostal.caseroserver.dataaccess.buildPayment
 import caribehostal.caseroserver.datamodel.Action
 import caribehostal.caseroserver.datamodel.Owner
+import caribehostal.caseroserver.datamodel.PaymentPeriod
 import com.itextpdf.text.Document
 import com.itextpdf.text.FontFactory
 import com.itextpdf.text.Paragraph
@@ -20,7 +22,7 @@ class Report(
         val startDate: LocalDate,
         val endDate: LocalDate,
         val dest: String,
-        val pricePerDay: BigDecimal,
+        val dairyPayment: BigDecimal,
         val actionDao: DaoAction = DaoAction(),
         val ownerDao: DaoOwner = DaoOwner(),
         val clientDao: DaoClient = DaoClient()
@@ -37,18 +39,17 @@ class Report(
     fun printOwners(owners: Iterable<Owner>) {
         for (owner in owners) {
             doc.add(title(owner.fullName))
-            val actionsByDate = actionDao.findActions(owner, startDate, endDate).groupBy(Action::getDateAction)
-            printPayDays(actionsByDate)
-            val days = actionsByDate.size.toLong()
-            doc.add(heading("Total: ${pricePerDay * BigDecimal.valueOf(days)}"))
+            val payment = actionDao.buildPayment(owner, startDate, endDate)
+            printPayDays(payment)
+            doc.add(heading("Total: ${payment.payment(dairyPayment)}"))
             doc.newPage()
         }
     }
 
-    fun printPayDays(actionsByDate: Map<LocalDate, List<Action>>) {
-        for (date in actionsByDate.keys) {
+    fun printPayDays(payment: PaymentPeriod) {
+        for (date in payment.actions.keys) {
             doc.add(heading(date.toString()))
-            val actions = actionsByDate[date]
+            val actions = payment.actions[date]
             if (actions != null) {
                 printActions(actions)
             }

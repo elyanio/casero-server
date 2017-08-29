@@ -20,7 +20,7 @@ public interface IOwner extends Persistable {
     @Column(nullable = false)
     String getFullName();
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "username")
     String getUser();
 
     @Column(nullable = false)

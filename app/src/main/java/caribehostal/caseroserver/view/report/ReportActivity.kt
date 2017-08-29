@@ -1,9 +1,7 @@
 package caribehostal.caseroserver.view.report
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-
-import caribehostal.caseroserver.R
+import android.support.v7.app.AppCompatActivity
 import com.facebook.litho.ComponentContext
 import com.facebook.litho.LithoView
 

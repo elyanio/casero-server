@@ -22,10 +22,12 @@ import caribehostal.caseroserver.datamodel.ActionClient;
 public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDetailRecyclerAdapter.MyViewHolder> {
 
     private List<ActionClient> actionClients;
+    private String[] checked;
     private Context context;
 
     public ActionDetailRecyclerAdapter(List<ActionClient> actionClients, Context context) {
         this.actionClients = actionClients;
+        checked = new String[actionClients.size()];
         this.context = context;
     }
 
@@ -42,7 +44,6 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.actionClientPassaport.setText(actionClients.get(position).getClient().getPassport());
         holder.actionClientCode.setText(actionClients.get(position).getActionClientCode());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +81,7 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
                         actionClients.remove(position);
                         actionClients.add(position, actionClient);
                         updateActionClient(actionClient);
+                        checked[position] = textView.getText().toString();
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -93,5 +95,14 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
         DaoActionClient daoActionClient = new DaoActionClient();
         daoActionClient.upsertAction(actionClient);
         notifyDataSetChanged();
+    }
+
+    public boolean isAllChecked() {
+        for (String check : checked) {
+            if (check == null || check.length() == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

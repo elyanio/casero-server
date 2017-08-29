@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +20,8 @@ import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.dataaccess.DaoActionClient;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionClient;
-import caribehostal.caseroserver.datamodel.Client;
+import caribehostal.caseroserver.datamodel.ActionState;
+import caribehostal.caseroserver.datamodel.ActionStateConverter;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
 
 public class ActionDetail extends AppCompatActivity {
@@ -28,11 +31,12 @@ public class ActionDetail extends AppCompatActivity {
     @BindView(R.id.action_detail_checkOut) TextView checkOut;
     @BindView(R.id.action_detail_code) TextView code;
     @BindView(R.id.action_label_date) TextView messageDate;
+    @BindView(R.id.recycler_client_passaport) RecyclerView recyclerView;
 
-    @BindView(R.id.recycler_client_passaport)
-    RecyclerView recyclerView;
     private List<ActionClient> actionClients;
     private ActionDetailRecyclerAdapter actionDetailRecyclerAdapter;
+    private DaoAction daoAction;
+    private Action action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +47,8 @@ public class ActionDetail extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         int idPetition = extras.getInt("IDPET");
-        DaoAction daoAction = new DaoAction();
-        Action action = daoAction.getActionByPetitionId(idPetition);
+        daoAction = new DaoAction();
+        action = daoAction.getActionByPetitionId(idPetition);
 
         fillValues(action);
         findActionClients(action);
@@ -66,5 +70,31 @@ public class ActionDetail extends AppCompatActivity {
         checkOut.setText(new LocalDateConverter().convertToPersisted(action.getCheckOut()));
         messageDate.setText(new LocalDateConverter().convertToPersisted(action.getDateAction()));
         code.setText(action.getPetitionOwnerId());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_done, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_ic_done) {
+            if (action.getActionState().equals(ActionState.PENDING)) {
+                if (actionDetailRecyclerAdapter.isAllChecked()) {
+                    action.setActionState(ActionState.FINISH);
+                    daoAction.upsertAction(action);
+                    finish();
+                    return true;
+                } else {
+                    Toast.makeText(this, "Por favor, chequea todos los pasaportes", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            } else
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

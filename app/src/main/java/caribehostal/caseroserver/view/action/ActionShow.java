@@ -68,4 +68,12 @@ public class ActionShow extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        actions = new ArrayList<>();
+        daoAction.getPendingActions().collect(actions);
+        adapter.setActions(actions);
+    }
 }

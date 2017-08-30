@@ -23,7 +23,7 @@
         android:id="@+id/button_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="mostrar cliente"/>
+        android:text="Acciones"/>
 
     <Button
         android:id="@+id/button_report"

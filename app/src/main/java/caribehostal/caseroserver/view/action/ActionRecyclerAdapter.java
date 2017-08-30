@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import caribehostal.caseroserver.R;
+import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionStateConverter;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
@@ -47,6 +47,13 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
         holder.action_owner.setText(actions.get(position).getOwner().getFullName());
         holder.action_state.setText(new ActionStateConverter().convertToPersisted(actions.get(position).getActionState()));
         holder.action_date.setText(new LocalDateConverter().convertToPersisted(actions.get(position).getDateAction()));
+
+        holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeItem(position);
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +94,13 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
 
     public void setActions(List<Action> actions) {
         this.actions = actions;
+        notifyDataSetChanged();
+    }
+
+    private void removeItem(int position) {
+        DaoAction daoAction = new DaoAction();
+        daoAction.removeAction(actions.get(position));
+        actions.remove(position);
         notifyDataSetChanged();
     }
 }

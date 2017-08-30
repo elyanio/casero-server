@@ -65,5 +65,7 @@ public class DaoAction {
                 .orderBy(Action.DATE_ACTION).get();
     }
 
-
+    public void removeAction(Action action) {
+        dataStore.delete(action);
+    }
 }

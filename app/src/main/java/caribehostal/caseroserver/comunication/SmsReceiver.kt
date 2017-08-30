@@ -20,7 +20,7 @@ class SmsReceiver : BroadcastReceiver() {
         val action = intent!!.action
         if (action == ACTION_SMS_RECEIVED) {
             val msgs = getMessagesFromIntent(intent)
-            var numberSender: String
+            var numberSender: String = ""
             var messageBody: String = ""
             if (msgs != null) {
                 for (msg in msgs) {
@@ -28,10 +28,11 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
+            getDataFromMessage(numberSender, messageBody)
         }
     }
 
-    //112#1234456#123446#876544#1234456#123345345435#locaclDate#localDate
+    //petitionOwner#ActionState#1234456#123446#876544#1234456#123345345435#locaclDate#localDate
     fun getDataFromMessage(numberSender: String, message: String) {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message);
 

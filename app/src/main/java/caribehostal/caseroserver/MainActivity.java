@@ -9,6 +9,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import caribehostal.caseroserver.controller.SmsReceiverController;
 import caribehostal.caseroserver.view.action.ActionShow;
 import caribehostal.caseroserver.view.owner.OwnerRegister;
 import caribehostal.caseroserver.view.owner.OwnerShow;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     void showRegisterView() {
         Bundle bundle = new Bundle();
         bundle.putInt(OwnerRegister.INTENT_ACTION, OwnerRegister.ACTION_INSERT);
-
         startActivity(new Intent(this, OwnerRegister.class).putExtras(bundle));
     }
 

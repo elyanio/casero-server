@@ -1,5 +1,7 @@
 package caribehostal.caseroserver.controller;
 
+import android.util.Log;
+
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class SmsReceiverController {
 
     public boolean checkEmisor(String cell) {
         DaoOwner daoOwner = new DaoOwner();
-        return !daoOwner.getOwnerByCell(cell).equals(null);
+        return daoOwner.getOwnerByCell(cell) != null;
     }
 
     // petitionCode#ActionType#passaport1#passaportX#CheckInDate#CheckOutDate
@@ -67,8 +69,8 @@ public class SmsReceiverController {
 
     private void findDates(String values) {
         String[] split = values.split("#");
-        checkIn = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 1]);
-        checkOut = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 2]);
+        checkOut = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 1]);
+        checkIn = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 2]);
     }
 
     private void findOwnerPetition(String values) {

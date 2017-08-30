@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
+import android.util.Log
 import caribehostal.caseroserver.controller.SmsReceiverController
 
 /**
@@ -28,6 +29,7 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
+            Log.e("Imprimendo Mensaje ", "Number: " + numberSender + " Msg " + messageBody)
             getDataFromMessage(numberSender, messageBody)
         }
     }
@@ -38,7 +40,7 @@ class SmsReceiver : BroadcastReceiver() {
 
         if (smsController.checkEmisor(numberSender)) {
             smsController.createObjects(numberSender, message)
-            smsController.insertElements();
+            smsController.insertElements()
         }
     }
 }

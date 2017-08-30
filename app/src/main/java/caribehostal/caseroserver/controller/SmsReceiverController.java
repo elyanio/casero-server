@@ -5,6 +5,9 @@ import org.threeten.bp.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import caribehostal.caseroserver.dataaccess.DaoAction;
+import caribehostal.caseroserver.dataaccess.DaoActionClient;
+import caribehostal.caseroserver.dataaccess.DaoClient;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionClient;
@@ -99,5 +102,30 @@ public class SmsReceiverController {
         for (Client client : clients) {
             actionClients.add(new ActionClient().setAction(action).setClient(client));
         }
+    }
+
+    private void insertClients() {
+        DaoClient daoClient = new DaoClient();
+        for (Client client : clients) {
+            daoClient.upsertClient(client);
+        }
+    }
+
+    private void insertAction() {
+        DaoAction daoAction = new DaoAction();
+        daoAction.upsertAction(action);
+    }
+
+    private void insertActionClient() {
+        DaoActionClient daoActionClient = new DaoActionClient();
+        for (ActionClient actionClient : actionClients) {
+            daoActionClient.upsertAction(actionClient);
+        }
+    }
+
+    public void insertElements() {
+        insertAction();
+        insertClients();
+        insertActionClient();
     }
 }

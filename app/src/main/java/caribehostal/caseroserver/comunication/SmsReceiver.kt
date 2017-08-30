@@ -37,7 +37,8 @@ class SmsReceiver : BroadcastReceiver() {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message);
 
         if (smsController.checkEmisor(numberSender)) {
-
+            smsController.createObjects(numberSender, message)
+            smsController.insertElements();
         }
     }
 }

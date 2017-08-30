@@ -2,6 +2,7 @@ package caribehostal.caseroserver.view.report
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.InputType.TYPE_CLASS_TEXT
 import android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 import caribehostal.caseroserver.R
 import caribehostal.caseroserver.util.toDate
@@ -47,10 +48,10 @@ class ReportActivity : AppCompatActivity() {
             customView {
                 verticalLayout {
                     val passwordInput = editText {
-                        inputType = TYPE_TEXT_VARIATION_PASSWORD
+                        inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
                     }
                     button(text = "Aceptar").onClick {
-                        if(passwordInput.text.toString() == "02113229") {
+                        if (passwordInput.text.toString() == "02113229") {
                             dialog.dismiss()
                             action.invoke()
                         }

@@ -28,9 +28,9 @@ public class CaseroServerApplication extends Application {
         AndroidThreeTen.init(this);
         Locale.setDefault(new Locale("es"));
 
-        DatabaseSetup databaseSetup = new DatabaseSetup();
-        databaseSetup.mockDatabase();
-        databaseSetup.testExistAction();
+//        DatabaseSetup databaseSetup = new DatabaseSetup();
+//        databaseSetup.mockDatabase();
+//        databaseSetup.testExistAction();
 
         SoLoader.init(this, false);
     }

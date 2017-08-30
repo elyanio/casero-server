@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
+import caribehostal.caseroserver.controller.SmsReceiverController
 
 /**
  * Created by asio on 8/17/2017.
@@ -27,6 +28,15 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
+        }
+    }
+
+    //112#1234456#123446#876544#1234456#123345345435#locaclDate#localDate
+    fun getDataFromMessage(numberSender: String, message: String) {
+        var smsController: SmsReceiverController = SmsReceiverController(numberSender, message);
+
+        if (smsController.checkEmisor(numberSender)) {
+
         }
     }
 }

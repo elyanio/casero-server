@@ -34,7 +34,7 @@ public class OwnerDetail extends AppCompatActivity {
 
     private void fillElements(String cell) {
         DaoOwner daoOwner = new DaoOwner();
-        Owner owner = daoOwner.getOwner(cell);
+        Owner owner = daoOwner.getOwnerByCell(cell);
         ownerName.setText(owner.getFullName());
         ownerId.setText(owner.getCarnetId());
         ownerCell.setText(owner.getCell());

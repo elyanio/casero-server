@@ -83,7 +83,7 @@ public class OwnerRegister extends AppCompatActivity {
 
     private void fillElements() {
         DaoOwner daoOwner = new DaoOwner();
-        Owner owner = daoOwner.getOwner(bundle.getString(INTENT_CELL));
+        Owner owner = daoOwner.getOwnerByCell(bundle.getString(INTENT_CELL));
         name.setText(owner.getFullName());
         carnet.setText(owner.getCarnetId());
         cell.setText(owner.getCell());

@@ -28,7 +28,7 @@ public class DaoOwner {
         return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get().toList();
     }
 
-    public Owner getOwner(String cell) {
+    public Owner getOwnerByCell(String cell) {
         return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).get().firstOrNull();
     }
 

@@ -60,6 +60,7 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("IDPET", actions.get(position).getId());
+                bundle.putString("OWIDPET", actions.get(position).getPetitionOwnerId());
                 context.startActivity(new Intent(context, ActionDetail.class).putExtras(bundle));
             }
         });

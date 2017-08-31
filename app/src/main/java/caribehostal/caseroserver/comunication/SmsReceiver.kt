@@ -29,7 +29,7 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
-            Log.e("Imprimendo Mensaje ", "Number: " + numberSender + " Msg " + messageBody)
+//            Log.e("Imprimendo Mensaje ", "Number: " + numberSender + " Msg " + messageBody)
             getDataFromMessage(numberSender, messageBody)
         }
     }
@@ -40,7 +40,7 @@ class SmsReceiver : BroadcastReceiver() {
 
         if (smsController.checkEmisor(numberSender)) {
             smsController.createObjects(numberSender, message)
-            smsController.insertElements()
+            smsController.upsertElements()
         }
     }
 }

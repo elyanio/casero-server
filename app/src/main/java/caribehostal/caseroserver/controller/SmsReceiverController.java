@@ -55,11 +55,12 @@ public class SmsReceiverController {
 
     // petitionCode#ActionType#passaport1#passaportX#CheckInDate#CheckOutDate
     public void createObjects(String cell, String values) {
-        if (actionType.equals(ActionType.INSERT)) {
-            createActionClients();
-        } else {
+        createActionClients();
+    }
 
-        }
+    private void updateAction() {
+        DaoAction daoAction = new DaoAction();
+        daoAction.updateAction(action);
     }
 
     private void findOwner(String cell) {
@@ -125,9 +126,14 @@ public class SmsReceiverController {
         }
     }
 
-    public void insertElements() {
-        insertAction();
-        insertClients();
-        insertActionClient();
+    public void upsertElements() {
+        if (actionType.equals(ActionType.INSERT)) {
+            insertAction();
+            insertClients();
+            insertActionClient();
+        } else if (actionType.equals(ActionType.EDIT)) {
+            updateAction();
+        }
+
     }
 }

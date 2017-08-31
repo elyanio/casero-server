@@ -1,16 +1,11 @@
 package caribehostal.caseroserver;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import java.util.Locale;
-
-import caribehostal.caseroserver.dataaccess.DatabaseSetup;
-import caribehostal.caseroserver.datamodel.ActionType;
-import caribehostal.caseroserver.datamodel.ActionTypeConverter;
 
 /**
  * @author rainermf

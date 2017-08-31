@@ -68,4 +68,11 @@ public class DaoAction {
     public void removeAction(Action action) {
         dataStore.delete(action);
     }
+
+    public void updateAction(Action action) {
+        dataStore.update(Action.class).set(Action.DATE_ACTION, action.getDateAction())
+                .set(Action.CHECK_IN, action.getCheckIn())
+                .set(Action.CHECK_OUT, action.getCheckOut())
+                .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId())).and(Action.OWNER.eq(action.getOwner())).get().value();
+    }
 }

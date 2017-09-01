@@ -94,7 +94,7 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
 
     private void updateActionClient(ActionClient actionClient) {
         DaoActionClient daoActionClient = new DaoActionClient();
-        daoActionClient.upsertAction(actionClient);
+        daoActionClient.upsertActionClient(actionClient);
         notifyDataSetChanged();
     }
 

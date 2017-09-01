@@ -19,7 +19,7 @@ public class DaoActionClient {
         dataStore = DataStoreHolder.INSTANCE.getDataStore();
     }
 
-    public void upsertAction(ActionClient actionClient) {
+    public void upsertActionClient(ActionClient actionClient) {
         dataStore.upsert(actionClient);
     }
 

@@ -54,7 +54,7 @@ public class DatabaseSetup {
         DaoActionClient daoActionClient = new DaoActionClient();
         for (ActionClient actionClient :
                 actionClients) {
-            daoActionClient.upsertAction(actionClient);
+            daoActionClient.upsertActionClient(actionClient);
         }
     }
 

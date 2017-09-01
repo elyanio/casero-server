@@ -1,7 +1,5 @@
 package caribehostal.caseroserver.controller;
 
-import android.util.Log;
-
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -133,7 +131,15 @@ public class SmsReceiverController {
             insertActionClient();
         } else if (actionType.equals(ActionType.EDIT)) {
             updateAction();
+            removeClients();
         }
+    }
 
+    private void removeClients() {
+        DaoActionClient daoActionClient = new DaoActionClient();
+        List<ActionClient> actionClients = daoActionClient.getActionClients(action).toList();
+        for (ActionClient actionClient : actionClients) {
+            daoActionClient.deleteActioClient(actionClient);
+        }
     }
 }

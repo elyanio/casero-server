@@ -75,4 +75,9 @@ public class DaoAction {
                 .set(Action.CHECK_OUT, action.getCheckOut())
                 .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId())).and(Action.OWNER.eq(action.getOwner())).get().value();
     }
+
+    public Action getAction(String ownerPetition, String ownerId) {
+        return dataStore.select(Action.class).where(Action.PETITION_OWNER_ID
+                .eq(ownerPetition).and(Action.OWNER_ID.eq(ownerId))).get().first();
+    }
 }

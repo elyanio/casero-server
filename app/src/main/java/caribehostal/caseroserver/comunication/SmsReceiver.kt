@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
-import android.util.Log
 import caribehostal.caseroserver.controller.SmsReceiverController
 
 /**
@@ -29,14 +28,13 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
-//            Log.e("Imprimendo Mensaje ", "Number: " + numberSender + " Msg " + messageBody)
-            getDataFromMessage(numberSender, messageBody)
+            getDataFromMessage(numberSender, messageBody, context)
         }
     }
 
     //petitionOwner#ActionState#1234456#123446#876544#1234456#123345345435#locaclDate#localDate
-    fun getDataFromMessage(numberSender: String, message: String) {
-        var smsController: SmsReceiverController = SmsReceiverController(numberSender, message);
+    fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
+        var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context);
 
         if (smsController.checkEmisor(numberSender)) {
             smsController.createObjects(numberSender, message)

@@ -1,5 +1,7 @@
 package caribehostal.caseroserver.controller;
 
+import android.content.Context;
+
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import caribehostal.caseroserver.datamodel.ActionTypeConverter;
 import caribehostal.caseroserver.datamodel.Client;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
 import caribehostal.caseroserver.datamodel.Owner;
+import caribehostal.caseroserver.notification.NotificationBar;
 
 /**
  * Created by asio on 8/29/2017.
@@ -33,10 +36,12 @@ public class SmsReceiverController {
     private List<ActionClient> actionClients;
     private Owner owner;
     private Action action;
+    private Context context;
 
-    public SmsReceiverController(String cell, String values) {
+    public SmsReceiverController(String cell, String values, Context context) {
         clients = new ArrayList<>();
         actionClients = new ArrayList<>();
+        this.context = context;
         findOwner(cell);
         findDates(values);
         findOwnerPetition(values);
@@ -129,13 +134,30 @@ public class SmsReceiverController {
             insertAction();
             insertClients();
             insertActionClient();
+            String bigText = createMessage("Se ha notificado, una nueva petición");
+            createNotification("Nueva Petición", action.getId(), owner.getFullName(), action.getPetitionOwnerId(), bigText);
         } else if (actionType.equals(ActionType.EDIT)) {
             updateAction();
             getMyAction();
             removeActionClients();
             insertClients();
             updateActionClients();
+            String bigText = createMessage("Se ha notificado, una actualización de petición");
+            createNotification("Actualizar Petición", action.getId(), owner.getFullName(), action.getPetitionOwnerId(), bigText);
         }
+    }
+
+    private String createMessage(String encabezado) {
+        String checkIn = new LocalDateConverter().convertToPersisted(action.getCheckIn());
+        String checkOut = new LocalDateConverter().convertToPersisted(action.getCheckOut());
+        String ownerName = action.getOwner().getFullName();
+        String cellOwner = action.getOwner().getCell();
+        String petitionCode = action.getPetitionOwnerId();
+
+        return encabezado + " desde " + checkIn + " hasta " + checkOut
+                + " a nombre de " + ownerName + " con celular " + cellOwner
+                + " y código de petición " + petitionCode;
+
     }
 
     private void getMyAction() {
@@ -157,5 +179,10 @@ public class SmsReceiverController {
         for (ActionClient actionClient : actionClients) {
             daoActionClient.deleteActioClient(actionClient);
         }
+    }
+
+    private void createNotification(String title, int id, String ownerName, String ownerPetition, String bigText) {
+        NotificationBar notificationBar = new NotificationBar();
+        notificationBar.createNotification(context, id, title, ownerName, ownerPetition, bigText);
     }
 }

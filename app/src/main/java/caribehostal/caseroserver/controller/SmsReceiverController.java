@@ -1,7 +1,5 @@
 package caribehostal.caseroserver.controller;
 
-import android.util.Log;
-
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
@@ -133,33 +131,31 @@ public class SmsReceiverController {
             insertActionClient();
         } else if (actionType.equals(ActionType.EDIT)) {
             updateAction();
-            removeClients();
+            getMyAction();
+            removeActionClients();
             insertClients();
             updateActionClients();
         }
     }
 
-    private void updateActionClients() {
+    private void getMyAction() {
         DaoAction daoAction = new DaoAction();
+        action = daoAction.getAction(action.getPetitionOwnerId(), action.getOwner().getCarnetId());
+    }
+
+    private void updateActionClients() {
         DaoActionClient daoActionClient = new DaoActionClient();
-        Action action1 = daoAction.getAction(action.getPetitionOwnerId(), action.getOwner().getCarnetId());
         actionClients = new ArrayList<>();
         for (Client client : clients) {
-            daoActionClient.upsertActionClient(new ActionClient().setClient(client).setAction(action1));
+            daoActionClient.upsertActionClient(new ActionClient().setClient(client).setAction(action));
         }
     }
 
-    private void removeClients() {
+    private void removeActionClients() {
         DaoActionClient daoActionClient = new DaoActionClient();
         List<ActionClient> actionClients = daoActionClient.getActionClients(action).toList();
         for (ActionClient actionClient : actionClients) {
             daoActionClient.deleteActioClient(actionClient);
-        }
-    }
-
-    private void listActionClients() {
-        for (ActionClient ac : actionClients) {
-            Log.e("Clientes ", ac.getClient().getPassport());
         }
     }
 }

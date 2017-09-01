@@ -29,9 +29,7 @@ public class DaoActionClient {
     }
 
     public Result<ActionClient> getActionClients(Action action) {
-        DaoAction daoAction = new DaoAction();
-        Action action1 = daoAction.getAction(action.getPetitionOwnerId(), action.getOwner().getCarnetId());
-        return dataStore.select(ActionClient.class).where(ActionClient.ACTION.eq(action1)).get();
+        return dataStore.select(ActionClient.class).where(ActionClient.ACTION.eq(action)).get();
     }
 
     public void deleteActioClient(ActionClient actionClient) {

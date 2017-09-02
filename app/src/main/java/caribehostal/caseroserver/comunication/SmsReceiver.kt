@@ -31,6 +31,7 @@ class SmsReceiver : BroadcastReceiver() {
                     messageBody += msg.messageBody
                 }
             }
+            numberSender = numberSender.substring(numberSender.length - 8)
             getDataFromMessage(numberSender, messageBody, context)
         }
     }
@@ -38,7 +39,7 @@ class SmsReceiver : BroadcastReceiver() {
     fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context);
 
-        if (smsController.checkEmisor(numberSender.substring(numberSender.length - 8))) {
+        if (smsController.checkEmisor(numberSender)) {
             smsController.createObjects(numberSender, message)
             smsController.upsertElements()
         }

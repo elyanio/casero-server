@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,7 @@ public class ActionDetail extends AppCompatActivity {
             if (action.getActionState().equals(ActionState.PENDING)) {
                 if (actionDetailRecyclerAdapter.isAllChecked()) {
                     action.setActionState(ActionState.FINISH);
+                    action.setProcessedDate(LocalDateTime.now());
                     daoAction.upsertAction(action);
                     String message = buildMessage();
 //                    sendMessage(message);
@@ -110,8 +114,11 @@ public class ActionDetail extends AppCompatActivity {
         String petitionOwnerId = action.getPetitionOwnerId();
         String message = petitionOwnerId;
         for (int i = 0; i < actionClients.size(); i++) {
-            message += "#" + actionClients.get(i).getClient().getPassport() + "$" + actionClients.get(i).getActionClientCode();
+            message += "#" + actionClients.get(i).getActionClientCode();
         }
+        String processDate = new LocalDateTimeConverter().convertToPersisted(action.getProcessedDate());
+        message += "#" + processDate;
+        Log.e("Mensaje a enviar ", message);
         return message;
     }
 

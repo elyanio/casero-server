@@ -99,7 +99,7 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
                 .setPositiveButton("Acepetar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (editText.getText().toString().equals("02113229"))
+                        if (editText.getText().toString().equals(password))
                             removeItem(position);
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

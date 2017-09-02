@@ -8,6 +8,7 @@ import java.util.List;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.Owner;
 import io.requery.Persistable;
+import io.requery.query.Result;
 import io.requery.sql.EntityDataStore;
 
 /**
@@ -25,8 +26,8 @@ public class DaoOwner {
         dataStore.upsert(owner);
     }
 
-    public List<Owner> getAllOwners() {
-        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get().toList();
+    public Result<Owner> getAllOwners() {
+        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get();
     }
 
     public Owner getOwnerByCell(String cell) {

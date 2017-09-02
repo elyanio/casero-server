@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
 
     private List<Owner> dataSet;
     private Context context;
+    private String password = "02113229";
 
     public OwnerRecyclerAdapter(List<Owner> data, Context context) {
         this.dataSet = data;
@@ -92,11 +94,13 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
     private void createPassowrdDialog(final int position) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View item = inflater.inflate(R.layout.item_pass, null);
+        final EditText editText = (EditText) item.findViewById(R.id.textPassword);
         new AlertDialog.Builder(context).setTitle("Eliminar Propietario")
                 .setPositiveButton("Acepetar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        removeItem(position);
+                        if (editText.getText().toString().equals("02113229"))
+                            removeItem(position);
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -108,7 +112,8 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
     }
 
     public void updateView() {
-        dataSet = new DaoOwner().getAllOwners();
+        dataSet = new ArrayList<>();
+        new DaoOwner().getAllOwners().collect(dataSet);
         notifyDataSetChanged();
     }
 }

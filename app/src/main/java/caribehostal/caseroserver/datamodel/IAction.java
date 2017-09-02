@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.datamodel;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import io.requery.Column;
 import io.requery.Convert;
@@ -31,8 +32,8 @@ public interface IAction extends Persistable {
     Owner getOwner();
 
     @Column(nullable = false)
-    @Convert(LocalDateConverter.class)
-    LocalDate getDateAction();
+    @Convert(LocalDateTimeConverter.class)
+    LocalDateTime getReceiveDate();
 
     @Column(nullable = false)
     @Convert(LocalDateConverter.class)
@@ -49,4 +50,8 @@ public interface IAction extends Persistable {
     @Column(nullable = false)
     @Convert(ActionStateConverter.class)
     ActionState getActionState();
+
+    @Column(nullable = false)
+    @Convert(LocalDateTimeConverter.class)
+    LocalDateTime getProcessedDate();
 }

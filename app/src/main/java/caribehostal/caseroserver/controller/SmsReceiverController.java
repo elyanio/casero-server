@@ -3,6 +3,7 @@ package caribehostal.caseroserver.controller;
 import android.content.Context;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,7 @@ public class SmsReceiverController {
     private void createAction() {
         action = new Action().setActionType(actionType).setOwner(owner)
                 .setActionState(actionState).setPetitionOwnerId(ownerPetition)
-                .setCheckIn(checkIn).setCheckOut(checkOut).setDateAction(LocalDate.now());
+                .setCheckIn(checkIn).setCheckOut(checkOut).setReceiveDate(LocalDateTime.now());
     }
 
     private void findClients(String values) {

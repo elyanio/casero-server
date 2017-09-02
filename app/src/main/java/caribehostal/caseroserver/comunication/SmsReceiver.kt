@@ -32,7 +32,6 @@ class SmsReceiver : BroadcastReceiver() {
         }
     }
 
-    //petitionOwner#ActionState#1234456#123446#876544#1234456#123345345435#locaclDate#localDate
     fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context);
 

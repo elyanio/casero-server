@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.dataaccess;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class DaoAction {
     }
 
     public Result<Action> getAllActions() {
-        return dataStore.select(Action.class).orderBy(Action.DATE_ACTION).get();
+        return dataStore.select(Action.class).orderBy(Action.RECEIVE_DATE).get();
     }
 
     public Action getActionByPetitionId(int idPetition) {
@@ -44,11 +45,11 @@ public class DaoAction {
                 .get().first();
     }
 
-    public List<Action> findActions(Owner owner, LocalDate startDate, LocalDate endDate) {
+    public List<Action> findActions(Owner owner, LocalDateTime startDate, LocalDateTime endDate) {
         return dataStore.select(Action.class)
                 .where(Action.OWNER.eq(owner))
-                .and(Action.DATE_ACTION.between(startDate, endDate))
-                .orderBy(Action.DATE_ACTION)
+                .and(Action.RECEIVE_DATE.between(startDate, endDate))
+                .orderBy(Action.RECEIVE_DATE)
                 .get()
                 .toList();
     }
@@ -56,13 +57,13 @@ public class DaoAction {
     public Result<Action> getPendingActions() {
         return dataStore.select(Action.class)
                 .where(Action.ACTION_STATE.eq(ActionState.PENDING))
-                .orderBy(Action.DATE_ACTION).get();
+                .orderBy(Action.RECEIVE_DATE).get();
     }
 
     public Result<Action> getFinishActions() {
         return dataStore.select(Action.class)
                 .where(Action.ACTION_STATE.eq(ActionState.FINISH))
-                .orderBy(Action.DATE_ACTION).get();
+                .orderBy(Action.RECEIVE_DATE).get();
     }
 
     public void removeAction(Action action) {
@@ -70,7 +71,7 @@ public class DaoAction {
     }
 
     public void updateAction(Action action) {
-        dataStore.update(Action.class).set(Action.DATE_ACTION, action.getDateAction())
+        dataStore.update(Action.class).set(Action.RECEIVE_DATE, action.getReceiveDate())
                 .set(Action.CHECK_IN, action.getCheckIn())
                 .set(Action.CHECK_OUT, action.getCheckOut())
                 .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId())).and(Action.OWNER.eq(action.getOwner())).get().value();

@@ -23,6 +23,7 @@ import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionClient;
 import caribehostal.caseroserver.datamodel.ActionState;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
+import caribehostal.caseroserver.datamodel.LocalDateTimeConverter;
 
 public class ActionDetail extends AppCompatActivity {
 
@@ -72,7 +73,7 @@ public class ActionDetail extends AppCompatActivity {
         ownerPassword.setText(action.getOwner().getPassword());
         checkIn.setText(new LocalDateConverter().convertToPersisted(action.getCheckIn()));
         checkOut.setText(new LocalDateConverter().convertToPersisted(action.getCheckOut()));
-        messageDate.setText(new LocalDateConverter().convertToPersisted(action.getDateAction()));
+        messageDate.setText(new LocalDateTimeConverter().convertToPersisted(action.getReceiveDate()));
         code.setText(action.getPetitionOwnerId());
     }
 

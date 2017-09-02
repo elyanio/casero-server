@@ -6,14 +6,15 @@ import caribehostal.caseroserver.datamodel.Owner
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito.mock
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 
 /**
  * @author rainermf
  */
 class DatabaseMock {
 
-    val startDate: LocalDate = LocalDate.of(2015, 10, 2)
-    val endDate: LocalDate = LocalDate.of(2015, 10, 12)
+    val startDate: LocalDateTime = LocalDateTime.of(2015, 10, 2, 0, 0)
+    val endDate: LocalDateTime = LocalDateTime.of(2015, 10, 12, 0, 0)
     val ownerDao: DaoOwner = mock(DaoOwner::class.java)
     val actionDao: DaoAction = mock(DaoAction::class.java)
     val clientDao: DaoClient = mock(DaoClient::class.java)
@@ -26,19 +27,19 @@ class DatabaseMock {
                 .willReturn(listOf(owner1, owner2))
         given(ownerDao.allOwners).willReturn(listOf(owner1, owner2))
         val action1 = Action()
-                .setDateAction(LocalDate.of(2015, 10, 2))
+                .setReceiveDate(LocalDateTime.of(2015, 10, 2, 0, 0))
                 .setCheckIn(LocalDate.of(2015, 11, 3))
                 .setCheckOut(LocalDate.of(2015, 11, 7))
         val action2 = Action()
-                .setDateAction(LocalDate.of(2015, 10, 3))
+                .setReceiveDate(LocalDateTime.of(2015, 10, 3, 0, 0))
                 .setCheckIn(LocalDate.of(2016, 1, 7))
                 .setCheckOut(LocalDate.of(2016, 1, 10))
         val action3 = Action()
-                .setDateAction(LocalDate.of(2015, 10, 2))
+                .setReceiveDate(LocalDateTime.of(2015, 10, 2, 0, 0))
                 .setCheckIn(LocalDate.of(2015, 12, 1))
                 .setCheckOut(LocalDate.of(2015, 12, 7))
         val action4 = Action()
-                .setDateAction(LocalDate.of(2015, 10, 5))
+                .setReceiveDate(LocalDateTime.of(2015, 10, 5, 0, 0))
                 .setCheckIn(LocalDate.of(2015, 12, 2))
                 .setCheckOut(LocalDate.of(2015, 12, 5))
         given(actionDao.findActions(owner1, startDate, endDate))

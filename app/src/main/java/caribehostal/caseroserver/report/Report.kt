@@ -12,6 +12,7 @@ import com.itextpdf.text.FontFactory
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import java.io.FileOutputStream
 import java.math.BigDecimal
 
@@ -19,8 +20,8 @@ import java.math.BigDecimal
  * @author rainermf
  */
 class Report(
-        val startDate: LocalDate,
-        val endDate: LocalDate,
+        val startDate: LocalDateTime,
+        val endDate: LocalDateTime,
         val dest: String,
         val dairyPayment: BigDecimal,
         val actionDao: DaoAction = DaoAction(),

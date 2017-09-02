@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.dataaccess;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
 
@@ -32,10 +33,10 @@ public class DaoOwner {
         return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).get().firstOrNull();
     }
 
-    public List<Owner> getOwnersForPayingPeriod(LocalDate startDate, LocalDate endDate) {
+    public List<Owner> getOwnersForPayingPeriod(LocalDateTime startDate, LocalDateTime endDate) {
         return dataStore.select(Owner.class)
                 .join(Action.class).on(Action.OWNER_ID.eq(Owner.CARNET_ID))
-                .where(Action.DATE_ACTION.between(startDate, endDate))
+                .where(Action.RECEIVE_DATE.between(startDate, endDate))
                 .groupBy(Owner.CARNET_ID)
                 .get()
                 .toList();

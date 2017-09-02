@@ -17,6 +17,7 @@ import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionStateConverter;
 import caribehostal.caseroserver.datamodel.LocalDateConverter;
+import caribehostal.caseroserver.datamodel.LocalDateTimeConverter;
 
 /**
  * Created by asio on 8/26/2017.
@@ -46,7 +47,7 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
         holder.action_id_petition.setText(actions.get(position).getPetitionOwnerId());
         holder.action_owner.setText(actions.get(position).getOwner().getFullName());
         holder.action_state.setText(new ActionStateConverter().convertToPersisted(actions.get(position).getActionState()));
-        holder.action_date.setText(new LocalDateConverter().convertToPersisted(actions.get(position).getDateAction()));
+        holder.action_date.setText(new LocalDateTimeConverter().convertToPersisted(actions.get(position).getReceiveDate()));
 
         holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
             @Override

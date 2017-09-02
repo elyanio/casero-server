@@ -3,6 +3,7 @@ package caribehostal.caseroserver.dataaccess;
 import android.util.Log;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -93,11 +94,11 @@ public class DatabaseSetup {
         for (int i = 0; i < owners.size(); i++) {
             actions.add(new Action().setOwner(owners.get(i))
                     .setActionState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.now()).setCheckOut(LocalDate.now()).setDateAction(LocalDate.now())
+                    .setCheckIn(LocalDate.now()).setCheckOut(LocalDate.now()).setReceiveDate(LocalDateTime.now())
                     .setPetitionOwnerId("1"));
             actions.add(new Action().setOwner(owners.get(i))
                     .setActionState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                    .setCheckIn(LocalDate.now()).setCheckOut(LocalDate.now()).setDateAction(LocalDate.now())
+                    .setCheckIn(LocalDate.now()).setCheckOut(LocalDate.now()).setReceiveDate(LocalDateTime.now())
                     .setPetitionOwnerId("2"));
         }
         return actions;
@@ -106,7 +107,7 @@ public class DatabaseSetup {
     private List<ActionClient> getActionClients(List<Action> actions, List<Client> clients) {
         ArrayList<ActionClient> actionClients = new ArrayList<>();
         for (int i = 0; i < actions.size(); i++) {
-            for (Client client :  clients) {
+            for (Client client : clients) {
                 actionClients.add(new ActionClient().setAction(actions.get(i)).setClient(client));
             }
         }
@@ -121,7 +122,7 @@ public class DatabaseSetup {
                 .setCell("545204265").setPassword("asio").setUser("S0100");
         Action action = new Action().setOwner(owner)
                 .setActionState(ActionState.PENDING).setActionType(ActionType.INSERT)
-                .setCheckIn(LocalDate.of(2017,8,22)).setCheckOut(LocalDate.of(2017,8,22)).setDateAction(LocalDate.of(2017,8,22))
+                .setCheckIn(LocalDate.of(2017, 8, 22)).setCheckOut(LocalDate.of(2017, 8, 22)).setReceiveDate(LocalDateTime.of(2017, 8, 22, 12, 0))
                 .setPetitionOwnerId("3");
         DaoAction daoAction = new DaoAction();
         boolean existAction = daoAction.existAction(action);

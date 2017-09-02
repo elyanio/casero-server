@@ -6,16 +6,22 @@
               android:orientation="vertical"
               tools:context="caribehostal.caseroserver.MainActivity">
 
+
     <Button
         android:id="@+id/button_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="registrar cliente"/>
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="Registrar Cliente"
+        />
+
 
     <Button
         android:id="@+id/button_owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="mostrar cliente"/>
 
 
@@ -23,12 +29,14 @@
         android:id="@+id/button_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Acciones"/>
 
     <Button
         android:id="@+id/button_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Reporte"/>
 
 </LinearLayout>

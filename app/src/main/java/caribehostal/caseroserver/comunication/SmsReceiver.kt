@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
+import android.support.annotation.RequiresApi
+import android.util.Log
 import caribehostal.caseroserver.controller.SmsReceiverController
 
 /**
@@ -14,7 +16,8 @@ import caribehostal.caseroserver.controller.SmsReceiverController
 class SmsReceiver : BroadcastReceiver() {
     private val ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED"
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onReceive(context: Context?, intent: Intent?) {
 
         val action = intent!!.action
@@ -35,7 +38,7 @@ class SmsReceiver : BroadcastReceiver() {
     fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context);
 
-        if (smsController.checkEmisor(numberSender)) {
+        if (smsController.checkEmisor(numberSender.substring(numberSender.length - 8))) {
             smsController.createObjects(numberSender, message)
             smsController.upsertElements()
         }

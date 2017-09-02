@@ -96,7 +96,7 @@ public class ActionDetail extends AppCompatActivity {
                     action.setProcessedDate(LocalDateTime.now());
                     daoAction.upsertAction(action);
                     String message = buildMessage();
-//                    sendMessage(message);
+                    sendMessage(message);
                     finish();
                     return true;
                 } else {

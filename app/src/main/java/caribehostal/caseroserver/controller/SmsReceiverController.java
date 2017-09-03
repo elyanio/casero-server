@@ -1,6 +1,7 @@
 package caribehostal.caseroserver.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
@@ -141,21 +142,28 @@ public class SmsReceiverController {
     }
 
     public void upsertElements() {
-        if (actionType.equals(ActionType.INSERT)) {
+        if (actionType.equals(ActionType.INSERT) && !checkAction(action)) {
             insertAction();
             insertClients();
             insertActionClient();
             String bigText = createMessage("Se ha notificado, una nueva petición");
-            createNotification("Nueva Petición", action.getId(), owner.getFullName(), action.getPetitionOwnerId(), bigText);
-        } else if (actionType.equals(ActionType.EDIT)) {
+            createNotification("Nueva Petición", action.getId(), owner.getFullName(),
+                    action.getPetitionOwnerId(), bigText);
+        } else if (actionType.equals(ActionType.EDIT) | checkAction(action)) {
             updateAction();
             getMyAction();
             removeActionClients();
             insertClients();
             updateActionClients();
             String bigText = createMessage("Se ha notificado, una actualización de petición");
-            createNotification("Actualizar Petición", action.getId(), owner.getFullName(), action.getPetitionOwnerId(), bigText);
+            createNotification("Actualizar Petición", action.getId(), owner.getFullName(),
+                    action.getPetitionOwnerId(), bigText);
         }
+    }
+
+    private boolean checkAction(Action action) {
+        DaoAction daoAction = new DaoAction();
+        return daoAction.existAction(action);
     }
 
     private String createMessage(String encabezado) {

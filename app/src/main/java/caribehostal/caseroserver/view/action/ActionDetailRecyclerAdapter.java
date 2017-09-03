@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.dataaccess.DaoActionClient;
 import caribehostal.caseroserver.datamodel.ActionClient;
+import caribehostal.caseroserver.datamodel.ActionState;
 
 /**
  * Created by asio on 8/27/2017.
@@ -71,26 +73,30 @@ public class ActionDetailRecyclerAdapter extends RecyclerView.Adapter<ActionDeta
     }
 
     private void createCodeDialog(final int position) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final View item = inflater.inflate(R.layout.item_code, null);
-        new AlertDialog.Builder(context).setTitle("Ingresar Código")
-                .setPositiveButton("Acepetar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        TextView textView = (TextView) item.findViewById(R.id.textCode);
-                        ActionClient actionClient = actionClients.get(position).setActionClientCode(textView.getText().toString());
-                        actionClients.remove(position);
-                        actionClients.add(position, actionClient);
-                        updateActionClient(actionClient);
-                        checked[position] = textView.getText().toString();
-                    }
-                }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }).setView(item)
-                .show();
+        if (actionClients.get(position).getAction().getActionState().equals(ActionState.PENDING)) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View item = inflater.inflate(R.layout.item_code, null);
+            new AlertDialog.Builder(context).setTitle("Ingresar Código")
+                    .setPositiveButton("Acepetar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            TextView textView = (TextView) item.findViewById(R.id.textCode);
+                            ActionClient actionClient = actionClients.get(position).setActionClientCode(textView.getText().toString());
+                            actionClients.remove(position);
+                            actionClients.add(position, actionClient);
+                            updateActionClient(actionClient);
+                            checked[position] = textView.getText().toString();
+                        }
+                    }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            }).setView(item)
+                    .show();
+        } else {
+            Toast.makeText(context, "Esta acción ha sido finalizada", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void updateActionClient(ActionClient actionClient) {

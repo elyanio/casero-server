@@ -1,13 +1,11 @@
 package caribehostal.appcasero.comunication
 
-import android.annotation.TargetApi
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
 import android.support.annotation.RequiresApi
-import android.util.Log
 import caribehostal.caseroserver.controller.SmsReceiverController
 
 /**
@@ -40,7 +38,7 @@ class SmsReceiver : BroadcastReceiver() {
         var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context);
 
         if (smsController.checkEmisor(numberSender)) {
-            smsController.createObjects(numberSender, message)
+            smsController.createObjects()
             smsController.upsertElements()
         }
     }

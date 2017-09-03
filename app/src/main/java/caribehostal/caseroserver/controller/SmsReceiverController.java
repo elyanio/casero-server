@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ import caribehostal.caseroserver.notification.NotificationBar;
 
 public class SmsReceiverController {
 
+    private String cell;
+    private String[] values;
     private String ownerPetition;
     private LocalDate checkIn;
     private LocalDate checkOut;
@@ -39,17 +42,12 @@ public class SmsReceiverController {
     private Action action;
     private Context context;
 
-    public SmsReceiverController(String cell, String values, Context context) {
+    public SmsReceiverController(String cell, String string, Context context) {
+        this.cell = cell;
         clients = new ArrayList<>();
         actionClients = new ArrayList<>();
         this.context = context;
-        findOwner(cell);
-        findDates(values);
-        findOwnerPetition(values);
-        findActionType(values);
-        findActionState(values);
-        createAction();
-        findClients(values);
+        this.values = string.split("#");
     }
 
     public boolean checkEmisor(String cell) {
@@ -57,8 +55,14 @@ public class SmsReceiverController {
         return daoOwner.getOwnerByCell(cell) != null;
     }
 
-    // petitionCode#ActionType#passaport1#passaportX#CheckInDate#CheckOutDate
-    public void createObjects(String cell, String values) {
+    public void createObjects() {
+        findOwner(cell);
+        findDates();
+        findOwnerPetition();
+        findActionType();
+        findActionState();
+        createAction();
+        findClients();
         createActionClients();
     }
 
@@ -72,23 +76,20 @@ public class SmsReceiverController {
         owner = daoOwner.getOwnerByCell(cell);
     }
 
-    private void findDates(String values) {
-        String[] split = values.split("#");
-        checkOut = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 1]);
-        checkIn = new LocalDateConverter().convertToMapped(LocalDate.class, split[split.length - 2]);
+    private void findDates() {
+        checkOut = new LocalDateConverter().convertToMapped(LocalDate.class, values[values.length - 1]);
+        checkIn = new LocalDateConverter().convertToMapped(LocalDate.class, values[values.length - 2]);
     }
 
-    private void findOwnerPetition(String values) {
-        String[] split = values.split("#");
-        ownerPetition = split[0];
+    private void findOwnerPetition() {
+        ownerPetition = values[0];
     }
 
-    private void findActionType(String values) {
-        String[] split = values.split("#");
-        actionType = new ActionTypeConverter().convertToMapped(ActionType.class, Integer.parseInt(split[1]));
+    private void findActionType() {
+        actionType = new ActionTypeConverter().convertToMapped(ActionType.class, Integer.parseInt(values[1]));
     }
 
-    private void findActionState(String values) {
+    private void findActionState() {
         actionState = ActionState.PENDING;
     }
 
@@ -98,10 +99,9 @@ public class SmsReceiverController {
                 .setCheckIn(checkIn).setCheckOut(checkOut).setReceiveDate(LocalDateTime.now());
     }
 
-    private void findClients(String values) {
-        String[] split = values.split("#");
-        for (int i = 2; i < split.length - 2; i++) {
-            clients.add(new Client().setPassport(split[i]));
+    private void findClients() {
+        for (int i = 2; i < values.length - 2; i++) {
+            clients.add(new Client().setPassport(values[i]));
         }
     }
 

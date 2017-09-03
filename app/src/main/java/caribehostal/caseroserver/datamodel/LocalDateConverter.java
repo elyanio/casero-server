@@ -2,6 +2,7 @@ package caribehostal.caseroserver.datamodel;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.DateTimeParseException;
 
 import io.requery.Converter;
 import io.requery.Nullable;
@@ -35,6 +36,10 @@ public class LocalDateConverter implements Converter<LocalDate, String> {
 
     @Override
     public LocalDate convertToMapped(Class<? extends LocalDate> type, String value) {
-        return LocalDate.parse(value, formatter);
+        try {
+            return LocalDate.parse(value, formatter);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 }

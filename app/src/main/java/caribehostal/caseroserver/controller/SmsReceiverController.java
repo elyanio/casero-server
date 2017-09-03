@@ -4,7 +4,6 @@ import android.content.Context;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +54,17 @@ public class SmsReceiverController {
         return daoOwner.getOwnerByCell(cell) != null;
     }
 
-    public void createObjects() {
+    public boolean createObjects() {
         findOwner(cell);
-        findDates();
-        findOwnerPetition();
-        findActionType();
-        findActionState();
-        createAction();
-        findClients();
-        createActionClients();
+        if (values.length >= 5 && findDates() && findActionType()) {
+            findOwnerPetition();
+            findActionState();
+            createAction();
+            findClients();
+            createActionClients();
+            return true;
+        }
+        return false;
     }
 
     private void updateAction() {
@@ -76,17 +77,26 @@ public class SmsReceiverController {
         owner = daoOwner.getOwnerByCell(cell);
     }
 
-    private void findDates() {
+    private boolean findDates() {
         checkOut = new LocalDateConverter().convertToMapped(LocalDate.class, values[values.length - 1]);
         checkIn = new LocalDateConverter().convertToMapped(LocalDate.class, values[values.length - 2]);
+        if (checkIn != null && checkOut != null)
+            return true;
+        return false;
     }
 
     private void findOwnerPetition() {
         ownerPetition = values[0];
     }
 
-    private void findActionType() {
-        actionType = new ActionTypeConverter().convertToMapped(ActionType.class, Integer.parseInt(values[1]));
+    private boolean findActionType() {
+        try {
+            int actionValue = Integer.parseInt(values[1]);
+            actionType = new ActionTypeConverter().convertToMapped(ActionType.class, actionValue);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private void findActionState() {

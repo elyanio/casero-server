@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">CaseroServer</string>
     <string name="title_activity_register_owner">Registrar Propietario</string>
+    <string name="title_activity_show_owner">Propietario</string>
+    <string name="title_activity_detail_owner">Editar Propietario</string>
+    <string name="title_activity_show_action">Petición</string>
+    <string name="title_activity_report">Reporte</string>
     <string name="celular">Celular</string>
     <string name="carnet">Carnet de identidad</string>
     <string name="password">Password</string>

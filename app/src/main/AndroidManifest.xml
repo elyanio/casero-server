@@ -35,14 +35,24 @@
         <activity
             android:name=".view.owner.OwnerRegister"
             android:label="@string/title_activity_register_owner"/>
-        <activity android:name=".view.owner.OwnerShow"/>
-        <activity android:name=".view.owner.OwnerDetail">
+        <activity
+            android:name=".view.owner.OwnerShow"
+            android:label="@string/title_activity_show_owner"/>
+        <activity
+            android:name=".view.owner.OwnerDetail"
+            android:label="@string/title_activity_detail_owner">
+
         </activity>
-        <activity android:name=".view.action.ActionShow">
+        <activity
+            android:name=".view.action.ActionShow"
+            android:label="@string/title_activity_show_action">
         </activity>
-        <activity android:name=".view.action.ActionDetail">
+        <activity
+            android:name=".view.action.ActionDetail"
+            android:label="@string/title_activity_show_action">
         </activity>
-        <activity android:name=".view.report.ReportActivity">
+        <activity android:name=".view.report.ReportActivity"
+                  android:label="@string/title_activity_report">
         </activity>
     </application>
 

@@ -74,7 +74,8 @@ public class DaoAction {
         dataStore.update(Action.class).set(Action.RECEIVE_DATE, action.getReceiveDate())
                 .set(Action.CHECK_IN, action.getCheckIn())
                 .set(Action.CHECK_OUT, action.getCheckOut())
-                .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId())).and(Action.OWNER.eq(action.getOwner())).get().value();
+                .where(Action.PETITION_OWNER_ID.eq(action.getPetitionOwnerId()))
+                .and(Action.OWNER.eq(action.getOwner())).get().value();
     }
 
     public Action getAction(String ownerPetition, String ownerId) {

@@ -18,23 +18,11 @@ import java.math.BigDecimal
  */
 object ActionViewSpec {
 
-    @JvmStatic
-    fun onCreateLayout(context: Context) {
-
-    }
-
-    @JvmStatic
-    fun onClick(context: Context) {
-        context.toast("Elaborando el calendario...")
-        val file = createPdf()
-        displayPdf(context, file)
-    }
-
-    fun createPdf(): File {
+    fun createPdf(startDate: LocalDate, endDate: LocalDate): File {
         val file = Resources.resolve("reporte_casero${System.currentTimeMillis()}.pdf")
         Report(
-                startDate = LocalDate.of(2017, 1, 1),
-                endDate = LocalDate.of(2017, 12, 31),
+                startDate = startDate,
+                endDate = endDate,
                 dairyPayment = BigDecimal.valueOf(25L),
                 dest = file.absolutePath
         ).createPdf()

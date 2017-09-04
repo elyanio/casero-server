@@ -15,5 +15,6 @@
     <string name="err_validate_cell">Teléfono no válido</string>
     <string name="err_validate">Existen campos vacios</string>
     <string name="err_validate_carnet">Carnet no válido</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>

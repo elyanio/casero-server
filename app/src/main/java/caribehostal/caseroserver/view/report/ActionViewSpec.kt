@@ -3,24 +3,12 @@ package caribehostal.caseroserver.view.report
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.content.Intent.ACTION_VIEW
 import android.net.Uri
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.makeText
 import caribehostal.caseroserver.dataaccess.Resources
 import caribehostal.caseroserver.report.Report
-import com.facebook.litho.ClickEvent
-import com.facebook.litho.Column
-import com.facebook.litho.ComponentContext
-import com.facebook.litho.ComponentLayout
-import com.facebook.litho.annotations.LayoutSpec
-import com.facebook.litho.annotations.OnCreateLayout
-import com.facebook.litho.annotations.OnEvent
-import com.facebook.litho.widget.Card
-import com.facebook.litho.widget.Text
-import com.facebook.yoga.YogaEdge
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.toast
 import org.threeten.bp.LocalDate
 import java.io.File
 import java.math.BigDecimal
@@ -28,37 +16,18 @@ import java.math.BigDecimal
 /**
  * @author rainermf
  */
-@LayoutSpec
 object ActionViewSpec {
 
-    @OnCreateLayout @JvmStatic
-    fun onCreateLayout(context: ComponentContext): ComponentLayout {
-        return Column.create(context)
-                .paddingDip(YogaEdge.ALL, 16)
-                .child(Text.create(context)
-                        .text("Rainer")
-                        .textSizeSp(24F))
-                .child(Text.create(context)
-                        .text("Martïnez")
-                        .textSizeSp(18F))
-                .child(Card.create(context)
-                        .cardBackgroundColor(Color.BLUE)
-                        .content(
-                                Text.create(context)
-                                        .text("Reporte")
-                                        .textSizeSp(18F)
-                        ).withLayout()
-                        .clickHandler(ActionView.onClick(context)))
-                .build()
+    @JvmStatic
+    fun onCreateLayout(context: Context) {
+
     }
 
-    @OnEvent(ClickEvent::class) @JvmStatic
-    fun onClick(context: ComponentContext) {
-        makeText(context, "Elaborando el calendario...", LENGTH_LONG).show()
-        doAsync {
-            val file = createPdf()
-            uiThread { displayPdf(context, file) }
-        }
+    @JvmStatic
+    fun onClick(context: Context) {
+        context.toast("Elaborando el calendario...")
+        val file = createPdf()
+        displayPdf(context, file)
     }
 
     fun createPdf(): File {
@@ -74,9 +43,9 @@ object ActionViewSpec {
 
     fun displayPdf(context: Context, file: File) {
         try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.fromFile(file)))
+            context.startActivity(Intent(ACTION_VIEW, Uri.fromFile(file)))
         } catch (e: ActivityNotFoundException) {
-            makeText(context, "No existe visor de pdf para visualizar el calendario.", LENGTH_LONG).show()
+            context.longToast("No existe visor de pdf para visualizar el calendario.")
         }
     }
 }

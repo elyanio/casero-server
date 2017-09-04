@@ -1,7 +1,5 @@
 package caribehostal.caseroserver.dataaccess;
 
-import android.util.Log;
-
 import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
@@ -26,11 +24,7 @@ public class DaoAction {
     }
 
     public void upsertAction(Action action) {
-        if (!existAction(action)) {
-            dataStore.upsert(action);
-        } else {
-            updateAction(action);
-        }
+        dataStore.upsert(action);
     }
 
     public boolean existAction(Action action) {

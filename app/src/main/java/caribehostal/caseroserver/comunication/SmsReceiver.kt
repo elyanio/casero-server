@@ -30,7 +30,7 @@ class SmsReceiver : BroadcastReceiver() {
                 }
             }
             numberSender = numberSender.substring(numberSender.length - 8)
-            getDataFromMessage(numberSender, messageBody, context)
+            getDataFromMessage(numberSender, messageBody.trim(), context)
         }
     }
 

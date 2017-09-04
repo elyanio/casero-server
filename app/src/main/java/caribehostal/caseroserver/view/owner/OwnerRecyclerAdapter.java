@@ -112,7 +112,7 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
     }
 
     public void updateView() {
-        dataSet = new DaoOwner().getAllOwners();
+        dataSet = new ArrayList<>(new DaoOwner().getAllOwners());
         notifyDataSetChanged();
     }
 }

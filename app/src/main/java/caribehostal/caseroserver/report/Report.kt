@@ -20,8 +20,8 @@ import java.math.BigDecimal
  * @author rainermf
  */
 class Report(
-        val startDate: LocalDateTime,
-        val endDate: LocalDateTime,
+        val startDate: LocalDate,
+        val endDate: LocalDate,
         val dest: String,
         val dairyPayment: BigDecimal,
         val actionDao: DaoAction = DaoAction(),
@@ -29,18 +29,27 @@ class Report(
         val clientDao: DaoClient = DaoClient()
 ) {
     val doc = Document()
+    val startTime = LocalDateTime.from(startDate)
+    val endTime = LocalDateTime.from(endDate.plusDays(1))
 
     fun createPdf() {
         PdfWriter.getInstance(doc, FileOutputStream(dest))
         doc.open()
-        printOwners(ownerDao.getOwnersForPayingPeriod(startDate, endDate))
+        printTitlepage()
+        printOwners(ownerDao.getOwnersForPayingPeriod(startTime, endTime))
         doc.close()
+    }
+
+    fun printTitlepage() {
+        doc.add(title("Casero"))
+        doc.add(title("$startDate - $startDate"))
+        doc.newPage()
     }
 
     fun printOwners(owners: Iterable<Owner>) {
         for (owner in owners) {
             doc.add(title(owner.fullName))
-            val payment = actionDao.buildPayment(owner, startDate, endDate)
+            val payment = actionDao.buildPayment(owner, startTime, endTime)
             printPayDays(payment)
             doc.add(heading("Total: ${payment.payment(dairyPayment)}"))
             doc.newPage()

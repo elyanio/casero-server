@@ -16,5 +16,14 @@
     <string name="err_validate">Existen campos vacios</string>
     <string name="err_validate_carnet">Carnet no válido</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_price_per_day">Precio por día</string>
+    <string name="pref_default_price_per_day">25</string>
 
 </resources>

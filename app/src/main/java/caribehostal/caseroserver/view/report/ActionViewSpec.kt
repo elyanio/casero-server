@@ -7,9 +7,11 @@ import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import caribehostal.caseroserver.dataaccess.Resources
 import caribehostal.caseroserver.report.Report
+import caribehostal.caseroserver.settings.Settings
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import java.io.File
 import java.math.BigDecimal
 
@@ -23,7 +25,7 @@ object ActionViewSpec {
         Report(
                 startDate = startDate,
                 endDate = endDate,
-                dairyPayment = BigDecimal.valueOf(25L),
+                dairyPayment = Settings.pricePerDay(),
                 dest = file.absolutePath
         ).createPdf()
         return file

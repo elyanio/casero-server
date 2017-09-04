@@ -3,8 +3,6 @@ package caribehostal.caseroserver.datamodel;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
-import javax.annotation.Nullable;
-
 import io.requery.Converter;
 
 /**
@@ -24,7 +22,6 @@ public class LocalDateTimeConverter implements Converter<LocalDateTime, String> 
         return String.class;
     }
 
-    @Nullable
     @Override
     public Integer getPersistedSize() {
         return null;
@@ -40,7 +37,7 @@ public class LocalDateTimeConverter implements Converter<LocalDateTime, String> 
     }
 
     @Override
-    public LocalDateTime convertToMapped(Class<? extends LocalDateTime> type, @Nullable String value) {
+    public LocalDateTime convertToMapped(Class<? extends LocalDateTime> type, String value) {
         if (!value.equals("null")) {
             return LocalDateTime.parse(value, formatter);
         } else {

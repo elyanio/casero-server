@@ -2,7 +2,6 @@ package caribehostal.caseroserver;
 
 import android.app.Application;
 
-import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -37,7 +36,5 @@ public class CaseroServerApplication extends Application {
 //        DatabaseSetup databaseSetup = new DatabaseSetup();
 //        databaseSetup.mockDatabase();
 //        databaseSetup.testExistAction();
-
-        SoLoader.init(this, false);
     }
 }

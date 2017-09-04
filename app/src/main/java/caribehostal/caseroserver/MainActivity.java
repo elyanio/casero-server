@@ -3,17 +3,14 @@ package caribehostal.caseroserver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import caribehostal.caseroserver.controller.SmsReceiverController;
 import caribehostal.caseroserver.view.action.ActionShow;
 import caribehostal.caseroserver.view.owner.OwnerRegister;
 import caribehostal.caseroserver.view.owner.OwnerShow;
 import caribehostal.caseroserver.view.report.ReportActivity;
+import caribehostal.caseroserver.view.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,5 +41,10 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.card_view_report)
     void showReportView() {
         startActivity(new Intent(this, ReportActivity.class));
+    }
+
+    @OnClick(R.id.card_view_settings)
+    void showSettingsView() {
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 }

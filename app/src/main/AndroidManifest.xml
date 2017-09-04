@@ -18,7 +18,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <receiver android:name="caribehostal.appcasero.comunication.SmsReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
@@ -53,6 +52,10 @@
         </activity>
         <activity android:name=".view.report.ReportActivity"
                   android:label="@string/title_activity_report">
+        </activity>
+        <activity
+            android:name=".view.settings.SettingsActivity"
+            android:label="@string/title_activity_settings">
         </activity>
     </application>
 

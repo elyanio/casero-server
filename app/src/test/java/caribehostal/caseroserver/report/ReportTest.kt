@@ -14,8 +14,8 @@ class ReportTest {
     fun createPdfTest() {
         val db = DatabaseMock()
 
-        Report(startDate = db.startDate,
-                endDate = db.endDate,
+        Report(startDate = db.startDate.toLocalDate(),
+                endDate = db.endDate.toLocalDate(),
                 dest = "report.pdf",
                 dairyPayment = BigDecimal.valueOf(25L),
                 actionDao = db.actionDao,

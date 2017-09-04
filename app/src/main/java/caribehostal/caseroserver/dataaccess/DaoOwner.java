@@ -25,8 +25,8 @@ public class DaoOwner {
         dataStore.upsert(owner);
     }
 
-    public Result<Owner> getAllOwners() {
-        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get();
+    public List<Owner> getAllOwners() {
+        return dataStore.select(Owner.class).orderBy(Owner.FULL_NAME).get().toList();
     }
 
     public Owner getOwnerByCell(String cell) {
@@ -36,7 +36,7 @@ public class DaoOwner {
     public List<Owner> getOwnersForPayingPeriod(LocalDateTime startDate, LocalDateTime endDate) {
         return dataStore.select(Owner.class)
                 .join(Action.class).on(Action.OWNER_ID.eq(Owner.CARNET_ID))
-                .where(Action.RECEIVE_DATE.between(startDate, endDate))
+                .where(Action.PROCESSED_DATE.between(startDate, endDate))
                 .groupBy(Owner.CARNET_ID)
                 .get()
                 .toList();

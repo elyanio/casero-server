@@ -13,6 +13,7 @@ import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
 import java.io.FileOutputStream
 import java.math.BigDecimal
 
@@ -29,8 +30,8 @@ class Report(
         val clientDao: DaoClient = DaoClient()
 ) {
     val doc = Document()
-    val startTime = LocalDateTime.from(startDate)
-    val endTime = LocalDateTime.from(endDate.plusDays(1))
+    val startTime = LocalDateTime.of(startDate, LocalTime.MIN)
+    val endTime = LocalDateTime.of(endDate, LocalTime.MAX)
 
     fun createPdf() {
         PdfWriter.getInstance(doc, FileOutputStream(dest))

@@ -44,7 +44,7 @@ class ReportActivity : AppCompatActivity() {
     inline fun afterAuthentication(crossinline action: () -> Unit) {
         val dialog = AlertDialogBuilder(ctx)
         with(dialog) {
-            title = "Password"
+            title("Password")
             customView {
                 verticalLayout {
                     val passwordInput = editText {

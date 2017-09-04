@@ -18,7 +18,6 @@ import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.datamodel.Action;
 import caribehostal.caseroserver.datamodel.ActionState;
 import caribehostal.caseroserver.datamodel.ActionStateConverter;
-import caribehostal.caseroserver.datamodel.LocalDateConverter;
 import caribehostal.caseroserver.datamodel.LocalDateTimeConverter;
 
 /**
@@ -54,7 +53,10 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
         holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeItem(position);
+                if (actions.get(position).getActionState().equals(ActionState.PENDING))
+                    removeItem(position);
+                else
+                    Toast.makeText(context, "Esta acción ha sido finalizada. No se puede borrar", Toast.LENGTH_LONG).show();
             }
         });
 

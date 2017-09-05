@@ -15,7 +15,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver android:name="caribehostal.appcasero.comunication.SmsReceiver">
@@ -50,8 +49,9 @@
             android:name=".view.action.ActionDetail"
             android:label="@string/title_activity_show_action">
         </activity>
-        <activity android:name=".view.report.ReportActivity"
-                  android:label="@string/title_activity_report">
+        <activity
+            android:name=".view.report.ReportActivity"
+            android:label="@string/title_activity_report">
         </activity>
         <activity
             android:name=".view.settings.SettingsActivity"

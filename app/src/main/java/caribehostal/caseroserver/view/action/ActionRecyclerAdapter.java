@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.FormatStyle;
+
 import java.util.List;
 
 import caribehostal.caseroserver.R;
@@ -29,6 +32,8 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
     private List<Action> actions;
     private Context context;
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
+
     public ActionRecyclerAdapter(List<Action> actions, Context context) {
         this.actions = actions;
         this.context = context;
@@ -38,9 +43,7 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.action_item, parent, false);
-
-        ActionRecyclerAdapter.MyViewHolder myViewHolder = new ActionRecyclerAdapter.MyViewHolder(view);
-        return myViewHolder;
+        return new ActionRecyclerAdapter.MyViewHolder(view);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionRecyclerAd
         holder.action_id_petition.setText(actions.get(position).getPetitionOwnerId());
         holder.action_owner.setText(actions.get(position).getOwner().getFullName());
         holder.action_state.setText(new ActionStateConverter().convertToPersisted(actions.get(position).getActionState()));
-        holder.action_date.setText(new LocalDateTimeConverter().convertToPersisted(actions.get(position).getReceiveDate()));
+        holder.action_date.setText(actions.get(position).getReceiveDate().format(dateTimeFormatter));
 
         holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
             @Override

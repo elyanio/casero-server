@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.FormatStyle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,13 +72,16 @@ public class ActionDetail extends AppCompatActivity {
         daoActionClient.getActionClients(action).collect(actionClients);
     }
 
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
+
     private void fillValues(Action action) {
         ownerName.setText(action.getOwner().getFullName());
         ownerUser.setText(action.getOwner().getUser());
         ownerPassword.setText(action.getOwner().getPassword());
-        checkIn.setText(new LocalDateConverter().convertToPersisted(action.getCheckIn()));
-        checkOut.setText(new LocalDateConverter().convertToPersisted(action.getCheckOut()));
-        messageDate.setText(new LocalDateTimeConverter().convertToPersisted(action.getReceiveDate()));
+        checkIn.setText(action.getCheckIn().format(dateFormatter));
+        checkOut.setText(action.getCheckOut().format(dateFormatter));
+        messageDate.setText(action.getReceiveDate().format(dateTimeFormatter));
         code.setText(action.getPetitionOwnerId());
     }
 

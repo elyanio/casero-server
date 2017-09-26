@@ -142,8 +142,8 @@ public class OwnerRegister extends AppCompatActivity {
     }
 
     private boolean validate(boolean check, TextInputLayout layout, @StringRes int message) {
-        if(check) {
-            layout.setErrorEnabled(true);
+        if (check) {
+            layout.setErrorEnabled(false);
             return true;
         } else {
             layout.setError(getString(message));

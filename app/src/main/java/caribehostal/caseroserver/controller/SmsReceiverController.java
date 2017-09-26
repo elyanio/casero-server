@@ -1,7 +1,6 @@
 package caribehostal.caseroserver.controller;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;
@@ -202,6 +201,6 @@ public class SmsReceiverController {
 
     private void createNotification(String title, int id, String ownerName, String ownerPetition, String bigText) {
         NotificationBar notificationBar = new NotificationBar();
-        notificationBar.createNotification(context, id, title, ownerName, ownerPetition, bigText);
+        notificationBar.notificRegisterClient(context, id, title, ownerName, ownerPetition, bigText);
     }
 }

@@ -6,16 +6,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import caribehostal.caseroserver.view.action.ActionShow;
+import caribehostal.caseroserver.view.owner.OwnerShow;
 
 /**
  * Created by asio on 2/24/2017.
  */
 public class NotificationBar {
+
+    private static int UNREGISTERED = 0;
 
     public void notificRegisterClient(Context context_emisor, int id_notification, String title, String text, String code, String bigText) {
 
@@ -55,9 +59,11 @@ public class NotificationBar {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(bigText))
                 .setVibrate(pattern);
 
-        Intent resultIntent = new Intent(context_emisor, ActionShow.class);
+
+        Intent resultIntent = new Intent(context_emisor, OwnerShow.class).putExtra("ACTION", UNREGISTERED);
+//        context_emisor.startActivity(new Intent(context_emisor, OwnerShow.class).putExtras(bundle));
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context_emisor);
-        stackBuilder.addParentStack(ActionShow.class);
+        stackBuilder.addParentStack(OwnerShow.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);

@@ -18,6 +18,9 @@ import caribehostal.caseroserver.datamodel.Owner;
 public class OwnerShow extends AppCompatActivity {
     @BindView(R.id.owner_recycler_view)
     RecyclerView recyclerView;
+    private static int REGIST = 0;
+    private static int SHOW = 1;
+
     private List<Owner> owners;
     private OwnerRecyclerAdapter adapter;
 
@@ -26,11 +29,19 @@ public class OwnerShow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_activity_show);
         ButterKnife.bind(this);
+        Bundle bundle = getIntent().getExtras();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        owners = new ArrayList<>(new DaoOwner().getAllOwners());
-        adapter = new OwnerRecyclerAdapter(owners, this);
+
+        if (bundle.getInt("ACTION") == REGIST) {
+            owners = new ArrayList<>(new DaoOwner().getAllUnregisteredOwners());
+            adapter = new OwnerRecyclerAdapter(owners, this, REGIST);
+            this.setTitle("Registrar Propietario");
+        } else if (bundle.getInt("ACTION") == SHOW) {
+            owners = new ArrayList<>(new DaoOwner().getAllOwners());
+            adapter = new OwnerRecyclerAdapter(owners, this, SHOW);
+        }
         recyclerView.setAdapter(adapter);
     }
 

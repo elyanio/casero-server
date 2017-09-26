@@ -29,10 +29,12 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
     private List<Owner> dataSet;
     private Context context;
     private String password = "02113229";
+    private int action = 1;
 
-    public OwnerRecyclerAdapter(List<Owner> data, Context context) {
+    public OwnerRecyclerAdapter(List<Owner> data, Context context, int action) {
         this.dataSet = data;
         this.context = context;
+        this.action = action;
     }
 
     @Override
@@ -59,9 +61,13 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("CELL", holder.cell.getText().toString());
-                context.startActivity(new Intent(context, OwnerDetail.class).putExtras(bundle));
+                if (action == 1) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("CELL", holder.cell.getText().toString());
+                    context.startActivity(new Intent(context, OwnerDetail.class).putExtras(bundle));
+                } else {
+                    //Aqui va la vista cuando hay que registrar
+                }
             }
         });
     }

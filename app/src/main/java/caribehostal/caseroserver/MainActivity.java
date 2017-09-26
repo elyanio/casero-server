@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,17 +25,19 @@ import static java.util.Collections.unmodifiableSet;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static int REGIST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        checkPermissions();
+        //checkPermissions();
     }
 
     @OnClick(R.id.card_view_owner)
     void showOwnerView() {
-        startActivity(new Intent(this, OwnerShow.class));
+        startActivity(new Intent(this, OwnerShow.class).putExtra("ACTION", REGIST));
     }
 
     @OnClick(R.id.card_view_register)

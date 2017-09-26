@@ -13,7 +13,8 @@ import caribehostal.caseroserver.controller.SmsReceiverController
  */
 class SmsReceiver : BroadcastReceiver() {
     private val ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED"
-
+    private val ACTION_REGISTER_OWNER = 1
+//    private val ACTION_REGISTER_CLIENT = 2
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -31,6 +32,7 @@ class SmsReceiver : BroadcastReceiver() {
             }
             numberSender = numberSender.substring(numberSender.length - 8)
             getDataFromMessage(numberSender, messageBody.trim(), context)
+
         }
     }
 

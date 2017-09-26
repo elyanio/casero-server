@@ -1,7 +1,10 @@
 package caribehostal.caseroserver.controller;
 
+import android.content.Context;
+
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
+import caribehostal.caseroserver.notification.NotificationBar;
 
 /**
  * Created by asio on 9/26/2017.
@@ -10,10 +13,14 @@ import caribehostal.caseroserver.datamodel.Owner;
 public class SmsReceiverOwnerController {
 
     private String[] values;
+    private Context context;
     private static int UNREGISTERED = 0;
+    private static String TITLE="Registrar Propietario";
+    private static String BIG_TEXT="ENHORABUENA!!!! Un nuevo propietario quiere trabajar con Casero Móvil. Comienza por registrar sus datos.";
 
-    public SmsReceiverOwnerController(String cell, String smsBody) {
+    public SmsReceiverOwnerController(String cell, String smsBody, Context context) {
         values = smsBody.split("#");
+        this.context = context;
         insertOwner();
     }
 
@@ -30,7 +37,13 @@ public class SmsReceiverOwnerController {
             owner.setAddressDescription(values[7]);
             owner.setRegister(UNREGISTERED);
             daoOwner.upsertOwner(owner);
+            notificOwnerRegisterPetition(1,values[1]);
         }
+    }
+
+    private void notificOwnerRegisterPetition(int id, String name) {
+        NotificationBar notificationBar = new NotificationBar();
+        notificationBar.notificRegisterOwner(context,id,TITLE,name,BIG_TEXT);
     }
 
 }

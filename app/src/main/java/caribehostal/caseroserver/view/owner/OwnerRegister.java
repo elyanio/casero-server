@@ -101,6 +101,7 @@ public class OwnerRegister extends AppCompatActivity {
                 .setUser(user.getText().toString())
                 .setPassword(password.getText().toString())
                 .setAddress(address.getText().toString())
+                .setRegister(1)
                 .setAddressDescription(addressDescription.getText().toString());
     }
 

@@ -20,6 +20,9 @@ public interface IOwner extends Persistable {
     @Column(nullable = false)
     String getFullName();
 
+    @Column(nullable = false)
+    int getRegister();
+
     @Column(nullable = false, name = "username")
     String getUser();
 

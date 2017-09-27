@@ -20,7 +20,7 @@ public class OwnerShow extends AppCompatActivity {
     RecyclerView recyclerView;
     private static int REGIST = 0;
     private static int SHOW = 1;
-
+    private int action = -1;
     private List<Owner> owners;
     private OwnerRecyclerAdapter adapter;
 
@@ -35,10 +35,12 @@ public class OwnerShow extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         if (bundle.getInt("ACTION") == REGIST) {
+            action = REGIST;
             owners = new ArrayList<>(new DaoOwner().getAllUnregisteredOwners());
             adapter = new OwnerRecyclerAdapter(owners, this, REGIST);
             this.setTitle("Registrar Propietario");
         } else if (bundle.getInt("ACTION") == SHOW) {
+            action = SHOW;
             owners = new ArrayList<>(new DaoOwner().getAllOwners());
             adapter = new OwnerRecyclerAdapter(owners, this, SHOW);
         }
@@ -48,6 +50,13 @@ public class OwnerShow extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        adapter.updateView();
+        switch (action) {
+            case 0:
+                adapter.updateUnregisterdOwnerView();
+                break;
+            case 1:
+                adapter.updateView();
+                break;
+        }
     }
 }

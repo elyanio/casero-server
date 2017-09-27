@@ -24,7 +24,7 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static int UNREGISTERED = 0;
     private static int REGIST = 1;
 
     @Override
@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt(OwnerRegister.INTENT_ACTION, OwnerRegister.ACTION_INSERT);
         startActivity(new Intent(this, OwnerRegister.class).putExtras(bundle));
+    }
+
+    @OnClick(R.id.card_view_owner_petition)
+    void launchOwnerShow() {
+        startActivity(new Intent(this, OwnerShow.class).putExtra("ACTION", UNREGISTERED));
     }
 
     @OnClick(R.id.card_view_action)

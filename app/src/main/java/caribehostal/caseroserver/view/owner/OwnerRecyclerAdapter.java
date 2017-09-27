@@ -121,4 +121,9 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
         dataSet = new ArrayList<>(new DaoOwner().getAllOwners());
         notifyDataSetChanged();
     }
+
+    public void updateUnregisterdOwnerView() {
+        dataSet = new ArrayList<>(new DaoOwner().getAllUnregisteredOwners());
+        notifyDataSetChanged();
+    }
 }

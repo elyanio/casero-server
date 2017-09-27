@@ -3,6 +3,7 @@ package caribehostal.caseroserver.view.owner;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -84,6 +85,7 @@ public class OwnerCheckRegister extends AppCompatActivity {
     }
 
     private void getOwner(String cell) {
+        Log.e("Imprimir celular ", cell);
         DaoOwner daoOwner = new DaoOwner();
         Owner unregisteredOwnerByCell = daoOwner.getUnregisteredOwnerByCell(cell);
         owner_check_name.setText(unregisteredOwnerByCell.getFullName());

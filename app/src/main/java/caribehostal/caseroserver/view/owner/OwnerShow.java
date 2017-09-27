@@ -51,5 +51,3 @@ public class OwnerShow extends AppCompatActivity {
         adapter.updateView();
     }
 }
-
-

@@ -39,7 +39,6 @@
         <activity
             android:name=".view.owner.OwnerDetail"
             android:label="@string/title_activity_detail_owner">
-
         </activity>
         <activity
             android:name=".view.action.ActionShow"
@@ -56,6 +55,8 @@
         <activity
             android:name=".view.settings.SettingsActivity"
             android:label="@string/title_activity_settings">
+        </activity>
+        <activity android:name=".view.owner.OwnerCheckRegister">
         </activity>
     </application>
 

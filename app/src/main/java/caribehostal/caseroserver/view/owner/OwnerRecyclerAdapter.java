@@ -61,12 +61,12 @@ public class OwnerRecyclerAdapter extends RecyclerView.Adapter<OwnerRecyclerAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("CELL", holder.cell.getText().toString());
                 if (action == 1) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("CELL", holder.cell.getText().toString());
                     context.startActivity(new Intent(context, OwnerDetail.class).putExtras(bundle));
-                } else {
-                    //Aqui va la vista cuando hay que registrar
+                } else if (action == 0) {
+                    context.startActivity(new Intent(context, OwnerCheckRegister.class).putExtras(bundle));
                 }
             }
         });

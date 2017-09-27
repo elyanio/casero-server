@@ -27,6 +27,17 @@ public class DaoOwner {
         dataStore.upsert(owner);
     }
 
+    public void updateOwner(Owner owner) {
+        dataStore.update(Owner.class).set(Owner.FULL_NAME, owner.getFullName())
+                .set(Owner.CELL, owner.getCell())
+                .set(Owner.ADDRESS, owner.getAddress())
+                .set(Owner.ADDRESS_DESCRIPTION, owner.getAddressDescription())
+                .set(Owner.USER, owner.getUser())
+                .set(Owner.PASSWORD, owner.getPassword())
+                .set(Owner.REGISTER, owner.getRegister())
+                .where(Owner.CARNET_ID.eq(owner.getCarnetId()));
+    }
+
     public List<Owner> getAllOwners() {
         return dataStore.select(Owner.class).where(Owner.REGISTER.eq(REGISTERED)).orderBy(Owner.FULL_NAME).get().toList();
     }
@@ -37,6 +48,10 @@ public class DaoOwner {
 
     public Owner getOwnerByCell(String cell) {
         return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).and(Owner.REGISTER.eq(REGISTERED)).get().firstOrNull();
+    }
+
+    public Owner getUnregisteredOwnerByCell(String cell) {
+        return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).and(Owner.REGISTER.eq(UNREGISTERED)).get().firstOrNull();
     }
 
     public List<Owner> getOwnersForPayingPeriod(LocalDateTime startDate, LocalDateTime endDate) {

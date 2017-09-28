@@ -76,16 +76,15 @@ public class OwnerCheckRegister extends AppCompatActivity {
         } else if (checkBox_address.isChecked()) {
             mensaje += " dirección";
         } else if (checkBox_description.isChecked()) {
-            mensaje += " su referencia";
+            mensaje += " referencia";
         } else {
-            mensaje = "Bien. Usted ha sido registrado en casero móvil.";
+            mensaje = "Por cada petición realizada, deberá pagar 10 pesos moneda nacional.";
             return true;
         }
         return false;
     }
 
     private void getOwner(String cell) {
-        Log.e("Imprimir celular ", cell);
         DaoOwner daoOwner = new DaoOwner();
         Owner unregisteredOwnerByCell = daoOwner.getUnregisteredOwnerByCell(cell);
         owner_check_name.setText(unregisteredOwnerByCell.getFullName());

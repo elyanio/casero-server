@@ -11,5 +11,5 @@ import java.math.BigDecimal
 object Settings {
 
     fun prefs(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(CaseroServerApplication.instance())
-    fun pricePerDay(): BigDecimal = BigDecimal(prefs().getString("price_per_day", "25"))
+    fun pricePerDay(): BigDecimal = BigDecimal(prefs().getString("price_per_day", "10"))
 }

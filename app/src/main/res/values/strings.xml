@@ -24,7 +24,9 @@
     <string name="pref_header_general">General</string>
 
     <string name="pref_title_price_per_day">Precio por día</string>
+    <string name="pref_title_price_per_sms">Precio por sms</string>
     <string name="pref_default_price_per_day">25</string>
+    <string name="pref_default_price_per_sms">10</string>
     <string name="title_activity_owner_petition_register">OwnerPetitionRegister</string>
 
 </resources>

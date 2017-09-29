@@ -14,6 +14,8 @@ import caribehostal.caseroserver.R;
 import caribehostal.caseroserver.comunication.SmsSender;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
+import caribehostal.caseroserver.settings.Settings;
+import caribehostal.caseroserver.util.ContactInformation;
 
 public class OwnerCheckRegister extends AppCompatActivity {
 
@@ -55,33 +57,54 @@ public class OwnerCheckRegister extends AppCompatActivity {
                 if (areAllValuesFine()) {
                     updateOwner();
                 }
+                Log.e("Mensaje a enviar", mensaje);
                 SmsSender smsSender = new SmsSender();
                 smsSender.enviarMensaje(OwnerCheckRegister.this.cell, mensaje);
+                finish();
             }
         });
     }
 
     private boolean areAllValuesFine() {
-
-        if (checkBox_nombre.isChecked()) {
-            mensaje += " nombre";
-        } else if (checkBox_carnet.isChecked()) {
-            mensaje += " carnet de identidad";
-        } else if (checkBox_cell.isChecked()) {
-            mensaje += " celular";
-        } else if (checkBox_user.isChecked()) {
-            mensaje += " usuario";
-        } else if (checkBox_password.isChecked()) {
-            mensaje += " contraseña";
-        } else if (checkBox_address.isChecked()) {
-            mensaje += " dirección";
-        } else if (checkBox_description.isChecked()) {
-            mensaje += " referencia";
-        } else {
-            mensaje = "Por cada petición realizada, deberá pagar 10 pesos moneda nacional.";
+        if (areAllFieldFine()) {
+            mensaje = "" + Settings.INSTANCE.pricePerDay() + "#" + ContactInformation.getContactInformation();
             return true;
         }
         return false;
+    }
+
+    private boolean areAllFieldFine() {
+        boolean flag = true;
+
+        if (checkBox_nombre.isChecked()) {
+            mensaje += " nombre";
+            flag = false;
+        }
+        if (checkBox_carnet.isChecked()) {
+            mensaje += " carnet de identidad";
+            flag = false;
+        }
+        if (checkBox_cell.isChecked()) {
+            mensaje += " celular";
+            flag = false;
+        }
+        if (checkBox_user.isChecked()) {
+            mensaje += " usuario";
+            flag = false;
+        }
+        if (checkBox_password.isChecked()) {
+            mensaje += " contraseña";
+            flag = false;
+        }
+        if (checkBox_address.isChecked()) {
+            mensaje += " dirección";
+            flag = false;
+        }
+        if (checkBox_description.isChecked()) {
+            mensaje += " referencia";
+            flag = false;
+        }
+        return flag;
     }
 
     private void getOwner(String cell) {

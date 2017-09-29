@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.view.Menu;
+import android.view.Window;
 
 import java.util.HashSet;
 import java.util.Set;

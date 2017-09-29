@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        //checkPermissions();
+        checkPermissions();
     }
 
     @OnClick(R.id.card_view_owner)
@@ -72,10 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("HardwareIds")
     private void checkPermissions() {
-
         Set<String> allowedNumbers = allowedNumbers();
         Set<String> allowedIds = allowedIds();
-
         TelephonyManager t = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if (!allowedNumbers.contains(t.getLine1Number()) && !allowedIds.contains(getDeviceId())) {
             this.finish();

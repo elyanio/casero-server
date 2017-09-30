@@ -6,15 +6,28 @@ package caribehostal.caseroserver.comunication;
 
 public class FixMessage {
 
-    private static int ACTION_REGISTER_CLIENT = 1;
-    private static int ACTION_REGISTER_OWNER = 2;
+    //TO RECEIVE
+    private static int ACTION_RECEIVE_REGISTER_CLIENT = 1;
+    private static int ACTION_RECEIVE_REGISTER_OWNER = 2;
 
-    public static int getActionRegisterOwner() {
+    //TO SEND
+    private static int ACTION_SEND_CORRECT_OWNER = 1;
+    private static int ACTION_SEND_WRONG_OWNER = 2;
 
-        return ACTION_REGISTER_OWNER;
+    public static int getActionSendCorrectOwner() {
+        return ACTION_SEND_CORRECT_OWNER;
     }
 
-    public static int getActionRegisterClient() {
-        return ACTION_REGISTER_CLIENT;
+    public static int getActionSendWrongOwner() {
+        return ACTION_SEND_WRONG_OWNER;
+    }
+
+    public static int getActionReceiveRegisterOwner() {
+
+        return ACTION_RECEIVE_REGISTER_OWNER;
+    }
+
+    public static int getActionReceiveRegisterClient() {
+        return ACTION_RECEIVE_REGISTER_CLIENT;
     }
 }

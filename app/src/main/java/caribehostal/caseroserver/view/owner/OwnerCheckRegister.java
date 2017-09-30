@@ -11,6 +11,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
+import caribehostal.caseroserver.comunication.FixMessage;
 import caribehostal.caseroserver.comunication.SmsSender;
 import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.datamodel.Owner;
@@ -67,7 +68,7 @@ public class OwnerCheckRegister extends AppCompatActivity {
 
     private boolean areAllValuesFine() {
         if (areAllFieldFine()) {
-            mensaje = "" + Settings.INSTANCE.pricePerDay() + "#" + ContactInformation.getContactInformation();
+            mensaje = "" + FixMessage.getActionSendCorrectOwner() + "#" + Settings.INSTANCE.pricePerDay() + "#" + ContactInformation.getContactInformation();
             return true;
         }
         return false;
@@ -75,7 +76,7 @@ public class OwnerCheckRegister extends AppCompatActivity {
 
     private boolean areAllFieldFine() {
         boolean flag = true;
-
+        mensaje = "" + FixMessage.getActionSendWrongOwner() + "#";
         if (checkBox_nombre.isChecked()) {
             mensaje += " nombre";
             flag = false;

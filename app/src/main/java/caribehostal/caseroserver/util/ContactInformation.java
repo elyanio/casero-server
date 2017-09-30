@@ -6,7 +6,7 @@ package caribehostal.caseroserver.util;
 
 public class ContactInformation {
 
-    private static String contact = "54150751,53850863,54520426,53746802,54909489";
+    private static String contact = "54150751#53850863#54520426#53746802#54909489";
 
     public static String getContactInformation() {
         return contact;

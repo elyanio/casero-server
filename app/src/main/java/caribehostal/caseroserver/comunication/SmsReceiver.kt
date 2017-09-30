@@ -38,8 +38,8 @@ class SmsReceiver : BroadcastReceiver() {
     fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
         val split = message.split("#")
         when (Integer.parseInt(split[0])) {
-            FixMessage.getActionRegisterClient() -> checkSmsReceiverController(numberSender, message, context)
-            FixMessage.getActionRegisterOwner() -> SmsReceiverOwnerController(numberSender, message, context)
+            FixMessage.getActionReceiveRegisterClient() -> checkSmsReceiverController(numberSender, message, context)
+            FixMessage.getActionReceiveRegisterOwner() -> SmsReceiverOwnerController(numberSender, message, context)
         }
     }
 

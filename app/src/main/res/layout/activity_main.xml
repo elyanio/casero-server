@@ -117,7 +117,7 @@
                     android:layout_below="@+id/image_view_owner_petition"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
-                    android:text="Buzón de Propietarios"/>
+                    android:text="Buzón Propietario"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 

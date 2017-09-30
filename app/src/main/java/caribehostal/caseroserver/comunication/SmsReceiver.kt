@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Telephony.Sms.Intents.getMessagesFromIntent
 import android.support.annotation.RequiresApi
+import caribehostal.caseroserver.comunication.FixMessage
 import caribehostal.caseroserver.controller.SmsReceiverController
 import caribehostal.caseroserver.controller.SmsReceiverOwnerController
 
@@ -14,8 +15,6 @@ import caribehostal.caseroserver.controller.SmsReceiverOwnerController
  */
 class SmsReceiver : BroadcastReceiver() {
     private val ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED"
-    private val ACTION_REGISTER_OWNER = "<"
-//    private val ACTION_REGISTER_CLIENT = 2
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -38,14 +37,17 @@ class SmsReceiver : BroadcastReceiver() {
 
     fun getDataFromMessage(numberSender: String, message: String, context: Context?) {
         val split = message.split("#")
-        if (split[0].equals(ACTION_REGISTER_OWNER)) {
-            SmsReceiverOwnerController(numberSender, message, context)
-        } else {
-            var smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context)
-            if (smsController.checkEmisor(numberSender)) {
-                if (smsController.createObjects())
-                    smsController.upsertElements()
-            }
+        when (Integer.parseInt(split[0])) {
+            FixMessage.getActionRegisterClient() -> checkSmsReceiverController(numberSender, message, context)
+            FixMessage.getActionRegisterOwner() -> SmsReceiverOwnerController(numberSender, message, context)
+        }
+    }
+
+    private fun checkSmsReceiverController(numberSender: String, message: String, context: Context?) {
+        val smsController: SmsReceiverController = SmsReceiverController(numberSender, message, context)
+        if (smsController.checkEmisor(numberSender)) {
+            if (smsController.createObjects())
+                smsController.upsertElements()
         }
     }
 }

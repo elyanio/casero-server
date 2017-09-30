@@ -86,12 +86,12 @@ public class SmsReceiverController {
     }
 
     private void findOwnerPetition() {
-        ownerPetition = values[0];
+        ownerPetition = values[1];
     }
 
     private boolean findActionType() {
         try {
-            int actionValue = Integer.parseInt(values[1]);
+            int actionValue = Integer.parseInt(values[2]);
             actionType = new ActionTypeConverter().convertToMapped(ActionType.class, actionValue);
             return true;
         } catch (NumberFormatException e) {
@@ -110,7 +110,7 @@ public class SmsReceiverController {
     }
 
     private void findClients() {
-        for (int i = 2; i < values.length - 2; i++) {
+        for (int i = 3; i < values.length - 2; i++) {
             clients.add(new Client().setPassport(values[i]));
         }
     }

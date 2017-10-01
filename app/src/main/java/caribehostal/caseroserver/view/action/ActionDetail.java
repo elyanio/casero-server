@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import caribehostal.caseroserver.R;
+import caribehostal.caseroserver.comunication.FixMessage;
 import caribehostal.caseroserver.comunication.SmsSender;
 import caribehostal.caseroserver.dataaccess.DaoAction;
 import caribehostal.caseroserver.dataaccess.DaoActionClient;
@@ -117,13 +118,13 @@ public class ActionDetail extends AppCompatActivity {
     private String buildMessage() {
         List<ActionClient> actionClients = actionDetailRecyclerAdapter.getActionClients();
         String petitionOwnerId = action.getPetitionOwnerId();
-        String message = petitionOwnerId;
+        String message = FixMessage.getActionSendCorrectPetition() + "#" + petitionOwnerId;
         for (int i = 0; i < actionClients.size(); i++) {
             message += "#" + actionClients.get(i).getActionClientCode();
         }
         String processDate = new LocalDateTimeConverter().convertToPersisted(action.getProcessedDate());
         message += "#" + processDate;
-        Log.e("Mensaje a enviar ", message);
+//        Log.e("Mensaje a enviar ", message);
         return message;
     }
 

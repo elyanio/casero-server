@@ -58,7 +58,6 @@ public class OwnerCheckRegister extends AppCompatActivity {
                 if (areAllValuesFine()) {
                     updateOwner();
                 }
-                Log.e("Mensaje a enviar", mensaje);
                 SmsSender smsSender = new SmsSender();
                 smsSender.enviarMensaje(OwnerCheckRegister.this.cell, mensaje);
                 finish();
@@ -68,7 +67,7 @@ public class OwnerCheckRegister extends AppCompatActivity {
 
     private boolean areAllValuesFine() {
         if (areAllFieldFine()) {
-            mensaje = "" + FixMessage.getActionSendCorrectOwner() + "#" + Settings.INSTANCE.pricePerDay() + "#" + ContactInformation.getContactInformation();
+            mensaje = FixMessage.getActionSendCorrectOwner() + "#" + Settings.INSTANCE.pricePerDay() + "#" + ContactInformation.getContactInformation();
             return true;
         }
         return false;
@@ -76,33 +75,29 @@ public class OwnerCheckRegister extends AppCompatActivity {
 
     private boolean areAllFieldFine() {
         boolean flag = true;
-        mensaje = "" + FixMessage.getActionSendWrongOwner() + "#";
+        mensaje = "" + FixMessage.getActionSendWrongOwner();
         if (checkBox_nombre.isChecked()) {
-            mensaje += " nombre";
+            mensaje += FixMessage.getNAME();
             flag = false;
         }
         if (checkBox_carnet.isChecked()) {
-            mensaje += " carnet de identidad";
-            flag = false;
-        }
-        if (checkBox_cell.isChecked()) {
-            mensaje += " celular";
+            mensaje += FixMessage.getCarnetIdentidad();
             flag = false;
         }
         if (checkBox_user.isChecked()) {
-            mensaje += " usuario";
+            mensaje += FixMessage.getUSER();
             flag = false;
         }
         if (checkBox_password.isChecked()) {
-            mensaje += " contraseña";
+            mensaje += FixMessage.getPASSWORD();
             flag = false;
         }
         if (checkBox_address.isChecked()) {
-            mensaje += " dirección";
+            mensaje += FixMessage.getADDRESS();
             flag = false;
         }
         if (checkBox_description.isChecked()) {
-            mensaje += " referencia";
+            mensaje += FixMessage.getREFERENCIA();
             flag = false;
         }
         return flag;

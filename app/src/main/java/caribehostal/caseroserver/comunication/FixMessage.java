@@ -7,27 +7,65 @@ package caribehostal.caseroserver.comunication;
 public class FixMessage {
 
     //TO RECEIVE
-    private static int ACTION_RECEIVE_REGISTER_CLIENT = 1;
-    private static int ACTION_RECEIVE_REGISTER_OWNER = 2;
+    private static String ACTION_RECEIVE_REGISTER_CLIENT = "1";
+    private static String ACTION_RECEIVE_REGISTER_OWNER = "2";
 
     //TO SEND
-    private static int ACTION_SEND_CORRECT_OWNER = 1;
-    private static int ACTION_SEND_WRONG_OWNER = 2;
+    private static String ACTION_SEND_CORRECT_OWNER = "1";
+    private static String ACTION_SEND_WRONG_OWNER = "2";
+    private static String ACTION_SEND_CORRECT_PETITION = "3";
 
-    public static int getActionSendCorrectOwner() {
+    //TO SEND WRONG DATAS TO CLIENT
+    private static String NAME = "#1";
+    private static String CARNET_IDENTIDAD = "#2";
+    private static String USER = "#3";
+    private static String PASSWORD = "#4";
+    private static String ADDRESS = "#5";
+    private static String REFERENCIA = "#6";
+
+    public static String getActionSendCorrectOwner() {
         return ACTION_SEND_CORRECT_OWNER;
     }
 
-    public static int getActionSendWrongOwner() {
+    public static String getActionSendWrongOwner() {
         return ACTION_SEND_WRONG_OWNER;
     }
 
-    public static int getActionReceiveRegisterOwner() {
+    public static String getActionReceiveRegisterOwner() {
 
         return ACTION_RECEIVE_REGISTER_OWNER;
     }
 
-    public static int getActionReceiveRegisterClient() {
+    public static String getActionReceiveRegisterClient() {
         return ACTION_RECEIVE_REGISTER_CLIENT;
+    }
+
+
+    public static String getNAME() {
+        return NAME;
+    }
+
+    public static String getCarnetIdentidad() {
+        return CARNET_IDENTIDAD;
+    }
+
+    public static String getUSER() {
+        return USER;
+    }
+
+    public static String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public static String getADDRESS() {
+        return ADDRESS;
+    }
+
+    public static String getREFERENCIA() {
+        return REFERENCIA;
+    }
+
+    public static String getActionSendCorrectPetition() {
+        return ACTION_SEND_CORRECT_PETITION;
     }
 }

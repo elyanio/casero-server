@@ -11,9 +11,10 @@ public class FixMessage {
     private static String ACTION_RECEIVE_REGISTER_OWNER = "2";
 
     //TO SEND
-    private static String ACTION_SEND_CORRECT_OWNER = "1";
-    private static String ACTION_SEND_WRONG_OWNER = "2";
-    private static String ACTION_SEND_CORRECT_PETITION = "3";
+    private static String ACTION_SEND_CORRECT_PETITION = "1";
+    private static String ACTION_SEND_CORRECT_OWNER = "2";
+    private static String ACTION_SEND_WRONG_OWNER = "3";
+
 
     //TO SEND WRONG DATAS TO CLIENT
     private static String NAME = "#1";
@@ -32,7 +33,6 @@ public class FixMessage {
     }
 
     public static String getActionReceiveRegisterOwner() {
-
         return ACTION_RECEIVE_REGISTER_OWNER;
     }
 

@@ -87,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <android.support.v7.widget.CardView
             android:id="@+id/card_view_owner_petition"
             android:layout_width="0dp"
@@ -118,7 +119,29 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:text="Buzón Propietario"/>
+
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/count_owners"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/badge_owner"
+                android:gravity="center"
+                android:minHeight="17sp"
+                android:minWidth="17sp"
+                android:padding="2dp"
+                android:paddingBottom="1dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:scaleType="fitStart"
+                android:text="0"
+                android:textColor="#ffffffff"
+                android:textSize="12sp"
+                android:visibility="visible"
+                />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -129,6 +152,27 @@
             android:layout_weight="1"
             card_view_report:cardCornerRadius="10dp"
             >
+
+            <TextView
+                android:id="@+id/count_clients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/badge_client"
+                android:gravity="center"
+                android:minHeight="17sp"
+                android:minWidth="17sp"
+                android:padding="2dp"
+                android:paddingBottom="1dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:scaleType="fitStart"
+                android:text="0"
+                android:textColor="#ffffffff"
+                android:textSize="12sp"
+                android:visibility="visible"
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -7,16 +7,20 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.view.Menu;
-import android.view.Window;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import caribehostal.caseroserver.dataaccess.DaoAction;
+import caribehostal.caseroserver.dataaccess.DaoOwner;
 import caribehostal.caseroserver.view.action.ActionShow;
 import caribehostal.caseroserver.view.owner.OwnerRegister;
 import caribehostal.caseroserver.view.owner.OwnerShow;
@@ -29,13 +33,16 @@ import static java.util.Collections.unmodifiableSet;
 public class MainActivity extends AppCompatActivity {
     private static int UNREGISTERED = 0;
     private static int REGIST = 1;
+    @BindView(R.id.count_owners) TextView count_owners;
+    @BindView(R.id.count_clients) TextView count_clients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        checkPermissions();
+//        checkPermissions();
+        init();
     }
 
     @OnClick(R.id.card_view_owner)
@@ -105,5 +112,45 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("HardwareIds")
     private String getDeviceId() {
         return Settings.Secure.getString(CaseroServerApplication.instance().getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+
+    private void init() {
+        DaoOwner daoOwner = new DaoOwner();
+        DaoAction daoAction = new DaoAction();
+        int pendingActionCount = daoAction.getPendingActions().toList().size();
+        int owners_count = daoOwner.getAllUnregisteredOwners().size();
+        if (owners_count > 0) {
+            count_owners.setVisibility(View.VISIBLE);
+            count_owners.setText("" + owners_count);
+        } else {
+            count_owners.setVisibility(View.INVISIBLE);
+        }
+        if (pendingActionCount > 0) {
+            count_clients.setVisibility(View.VISIBLE);
+            count_clients.setText("" + pendingActionCount);
+        } else {
+            count_clients.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_ic_refresh) {
+           onResume();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

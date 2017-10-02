@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,7 @@ public class OwnerCheckRegister extends AppCompatActivity {
 
     @BindView(R.id.owner_check_save) FloatingActionButton save;
 
-    private String mensaje = "Por favor, corrija su";
+    private String mensaje = "";
     private String cell;
 
     @Override
@@ -57,6 +58,10 @@ public class OwnerCheckRegister extends AppCompatActivity {
             public void onClick(View v) {
                 if (areAllValuesFine()) {
                     updateOwner();
+                    Toast.makeText(OwnerCheckRegister.this, "Registro correcto", Toast.LENGTH_SHORT).show();
+                } else {
+                    deletePetition();
+                    Toast.makeText(OwnerCheckRegister.this, "Mensaje enviado.", Toast.LENGTH_SHORT).show();
                 }
                 SmsSender smsSender = new SmsSender();
                 smsSender.enviarMensaje(OwnerCheckRegister.this.cell, mensaje);
@@ -127,5 +132,11 @@ public class OwnerCheckRegister extends AppCompatActivity {
         owner.setAddressDescription(owner_check_address_description.getText().toString());
         owner.setRegister(REGISTERED);
         daoOwner.upsertOwner(owner);
+    }
+
+    private void deletePetition() {
+        DaoOwner daoOwner = new DaoOwner();
+        Owner unregisteredOwnerByCarnetId = daoOwner.getUnregisteredOwnerByCarnetId(owner_check_carnet.getText().toString());
+        daoOwner.remove(unregisteredOwnerByCarnetId);
     }
 }

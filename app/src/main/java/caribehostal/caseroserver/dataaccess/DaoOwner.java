@@ -53,6 +53,9 @@ public class DaoOwner {
     public Owner getUnregisteredOwnerByCell(String cell) {
         return dataStore.select(Owner.class).where(Owner.CELL.eq(cell)).and(Owner.REGISTER.eq(UNREGISTERED)).get().firstOrNull();
     }
+    public Owner getUnregisteredOwnerByCarnetId(String carnet) {
+        return dataStore.select(Owner.class).where(Owner.CARNET_ID.eq(carnet)).and(Owner.REGISTER.eq(UNREGISTERED)).get().firstOrNull();
+    }
 
     public List<Owner> getOwnersForPayingPeriod(LocalDateTime startDate, LocalDateTime endDate) {
         return dataStore.select(Owner.class)

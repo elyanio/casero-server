@@ -1,156 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="caribehostal.caseroserver.view.owner.OwnerDetail">
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                                        android:id="@+id/action_card_detail"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        card_view:cardCornerRadius="10dp"
-                                        card_view:cardElevation="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent">
-
-            <TextView
-                android:id="@+id/action_detail_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Asiel Alonso Chaviano"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/action_detail_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Code"
-                />
-
-            <TextView
-                android:id="@+id/action_label_checkIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_detail_name"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Entrada:"
-                android:textSize="10sp"/>
-
-            <TextView
-                android:id="@+id/action_detail_checkIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_detail_name"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="3dp"
-                android:layout_toEndOf="@+id/action_label_checkIn"
-                android:text="2017/08/28"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-
-
-            <TextView
-                android:id="@+id/action_label_checkOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_label_checkIn"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Salida:"
-                android:textSize="10sp"/>
-
-            <TextView
-                android:id="@+id/action_detail_checkOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/action_detail_checkIn"
-                android:layout_below="@+id/action_label_checkIn"
-                android:layout_marginTop="3dp"
-                android:layout_toEndOf="@+id/action_label_checkOut"
-                android:text="2017/08/28"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/action_label_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_label_checkOut"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Usuario:"
-                android:textSize="10sp"/>
-
-
-            <TextView
-                android:id="@+id/action_detail_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/action_detail_checkOut"
-                android:layout_below="@+id/action_detail_checkOut"
-                android:layout_marginTop="3dp"
-                android:text="User"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-
-
-            <TextView
-                android:id="@+id/action_label_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_label_user"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginTop="5dp"
-                android:text="Contraseña:"
-                android:textSize="10sp"/>
-
-
-            <TextView
-                android:id="@+id/action_detail_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/action_label_user"
-                android:layout_marginTop="3dp"
-                android:layout_toEndOf="@id/action_label_password"
-                android:text="S012asi*2015"
-                android:textSize="12sp"
-                android:textStyle="bold"/>
-
-
-            <TextView
-                android:id="@+id/action_label_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/action_detail_password"
-                android:layout_marginRight="5dp"
-                android:text="2017/08/27"
-                android:textSize="10sp"/>
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_client_passaport"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/action_card_detail"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-    </android.support.v7.widget.RecyclerView>
-
-</RelativeLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="caribehostal.caseroserver.view.owner.OwnerDetail">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                        android:id="@+id/action_card_detail"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="2dp"
+                                        card_view:cardCornerRadius="10dp"
+                                        card_view:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/action_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Asiel Alonso Chaviano"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/action_detail_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Code"
+                />
+
+            <TextView
+                android:id="@+id/action_label_checkIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_detail_name"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Entrada:"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/action_detail_checkIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_detail_name"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@+id/action_label_checkIn"
+                android:text="2017/08/28"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/action_label_checkOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_label_checkIn"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Salida:"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/action_detail_checkOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/action_detail_checkIn"
+                android:layout_below="@+id/action_label_checkIn"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@+id/action_label_checkOut"
+                android:text="2017/08/28"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/action_label_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_label_checkOut"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Usuario:"
+                android:textSize="10sp"/>
+
+
+            <TextView
+                android:id="@+id/action_detail_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/action_detail_checkOut"
+                android:layout_below="@+id/action_detail_checkOut"
+                android:layout_marginTop="3dp"
+                android:text="User"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/action_label_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_label_user"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginTop="5dp"
+                android:text="Contraseña:"
+                android:textSize="10sp"/>
+
+
+            <TextView
+                android:id="@+id/action_detail_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_label_user"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@id/action_label_password"
+                android:text="S012asi*2015"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/action_label_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/action_detail_password"
+                android:layout_marginRight="5dp"
+                android:text="2017/08/27"
+                android:textSize="10sp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_client_passaport"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/action_card_detail"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

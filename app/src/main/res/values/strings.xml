@@ -1,32 +1,32 @@
-<resources>
-    <string name="app_name">CaseroServer</string>
-    <string name="title_activity_register_owner">Registrar Propietario</string>
-    <string name="title_activity_show_owner">Propietario</string>
-    <string name="title_activity_detail_owner">Editar Propietario</string>
-    <string name="title_activity_show_action">Petición</string>
-    <string name="title_activity_report">Reporte</string>
-    <string name="celular">Celular</string>
-    <string name="carnet">Carnet de identidad</string>
-    <string name="password">Password</string>
-    <string name="user">Usuario</string>
-    <string name="address">Dirección</string>
-    <string name="referencia">Referencia</string>
-    <string name="nombre">Nombre</string>
-    <string name="err_validate_cell">Teléfono no válido</string>
-    <string name="err_validate">Existen campos vacios</string>
-    <string name="err_validate_carnet">Carnet no válido</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_settings">Settings</string>
-
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_price_per_day">Precio por día</string>
-    <string name="pref_title_price_per_sms">Precio por sms</string>
-    <string name="pref_default_price_per_day">25</string>
-    <string name="pref_default_price_per_sms">10</string>
-    <string name="title_activity_owner_petition_register">OwnerPetitionRegister</string>
-
-</resources>
+<resources>
+    <string name="app_name">CaseroServer</string>
+    <string name="title_activity_register_owner">Registrar Propietario</string>
+    <string name="title_activity_show_owner">Propietario</string>
+    <string name="title_activity_detail_owner">Editar Propietario</string>
+    <string name="title_activity_show_action">Petición</string>
+    <string name="title_activity_report">Reporte</string>
+    <string name="celular">Celular</string>
+    <string name="carnet">Carnet de identidad</string>
+    <string name="password">Password</string>
+    <string name="user">Usuario</string>
+    <string name="address">Dirección</string>
+    <string name="referencia">Referencia</string>
+    <string name="nombre">Nombre</string>
+    <string name="err_validate_cell">Teléfono no válido</string>
+    <string name="err_validate">Existen campos vacios</string>
+    <string name="err_validate_carnet">Carnet no válido</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_price_per_day">Precio por día</string>
+    <string name="pref_title_price_per_sms">Precio por sms</string>
+    <string name="pref_default_price_per_day">25</string>
+    <string name="pref_default_price_per_sms">10</string>
+    <string name="title_activity_owner_petition_register">OwnerPetitionRegister</string>
+
+</resources>

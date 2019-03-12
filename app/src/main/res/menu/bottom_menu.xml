@@ -1,14 +1,14 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/pending"
-        android:icon="@drawable/ic_update_black_24dp"
-        android:title="Pendientes"/>
-    <item
-        android:id="@+id/all"
-        android:icon="@drawable/ic_mail_black_24dp"
-        android:title="Todos"/>
-    <item
-        android:id="@+id/finish"
-        android:icon="@drawable/ic_drafts_black_24dp"
-        android:title="Finalizados"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pending"
+        android:icon="@drawable/ic_update_black_24dp"
+        android:title="Pendientes"/>
+    <item
+        android:id="@+id/all"
+        android:icon="@drawable/ic_mail_black_24dp"
+        android:title="Todos"/>
+    <item
+        android:id="@+id/finish"
+        android:icon="@drawable/ic_drafts_black_24dp"
+        android:title="Finalizados"/>
 </menu>
